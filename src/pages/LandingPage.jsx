@@ -1,10 +1,10 @@
 import React from 'react'
 import { logo } from '../assets'
-// import { RiUserLine } from "react-icons/ri";
-// import { LiaAngleDownSolid } from "react-icons/lia";
-// import { MdHelpOutline } from "react-icons/md";
-// import { CgShoppingCart } from "react-icons/cg";
-
+import { RiUserLine } from "react-icons/ri";
+import { LiaAngleDownSolid } from "react-icons/lia";
+import { MdHelpOutline } from "react-icons/md";
+import { CgShoppingCart } from "react-icons/cg";
+import NavLinks from '../Components/NavLinks';
 
 const LandingPage = () => {
   return (
@@ -14,11 +14,11 @@ const LandingPage = () => {
           <img src={logo} alt="" className='w-[40%] lgss:w-[30%] lgss:h-11' />
           <input type="text" className='py- px-2 w-[60%] outline-none border border-black' placeholder='Search products...' />
         </div>
-        {/* <div className="lgss:w-[30%] hidden lgss:flex gap-10 justify-center items-center">
+        <div className="lgss:w-[30%] hidden lgss:flex gap-12 justify-center items-center">
           <NavLinks link={"Account"} icon1={RiUserLine} icon2={LiaAngleDownSolid}/>
           <NavLinks link={"Help"} icon1={MdHelpOutline} icon2={LiaAngleDownSolid}/>
           <NavLinks link={"Cart"} icon1={CgShoppingCart}/>
-        </div> */}
+        </div>
       </nav>
     </div>
   )
