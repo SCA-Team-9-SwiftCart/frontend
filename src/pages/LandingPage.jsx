@@ -5,7 +5,7 @@ import { LiaAngleDownSolid } from "react-icons/lia";
 import { MdHelpOutline } from "react-icons/md";
 import { CgShoppingCart } from "react-icons/cg";
 import NavLinks from "../Components/NavLinks";
-
+import Footer from "../Components/Footer";
 const LandingPage = () => {
   return (
     <div className="w-full bg-white text-black pt-10 px-[5%] flex flex-col">
@@ -68,6 +68,10 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+
+      <hr className="border-color-[#FFBE0B-500]" />
+        {/* ================ Footer Section =============== */}
+      <Footer />
     </div>
   );
 };
