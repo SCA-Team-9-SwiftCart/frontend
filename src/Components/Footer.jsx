@@ -93,26 +93,29 @@ function Footer() {
               <img src="/src/assets/images/footerIcons/location.svg" alt="locationicon" />
             <p className='text-xs font-medium mt-8 text-left text-[#080808]'> N0: 17 Alaba Road, Opp Zira Filling Station, Lagos State, Nigeria </p>
             </div>
-{/* flex flex-col */}
-            <div className=' bg-gray-400  w-full'>
+
+            <div className='w-full'>
                <PhoneIcon />
              <p className='text-xs font-medium mt-8 text-left text-[#080808]'>0808220699, 08145345667</p>
             </div>
-            <div className=' bg-gray-400 p-4 w-full'>
+            <div >
               <h1>JOIN US ON </h1>
+             
             </div>
           </div>
-          
-
-            
-          
-
+        
         </div>
         
-      <p>&copy; PAYMENT METHODS AND DELIVERY PARTNERS</p>
-      <p>ALl Rights @2024</p>
+      <p className='text-xs font-medium mt-8 text-center text-[#080808]'>&copy; PAYMENT METHODS AND DELIVERY PARTNERS</p>
+      <p className='text-xs font-medium mt-8 text-center text-[#080808]'>ALl Rights @2024</p>
     </footer>
   );
 }
 
 export default Footer;
+
+
+//  <img src="/src/assets/images/footerIcons/facebook.svg" alt="" />
+//               <img src="/src/assets/images/footerIcons/youtube.svg" alt="" />
+//               <img src="/src/assets/images/footerIcons/instagram.svg" alt="" />
+//               <img src="/src/assets/images/footerIcons/twitter x.svg" alt="" />
