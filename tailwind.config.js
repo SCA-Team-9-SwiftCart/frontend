@@ -4,13 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#152F29",
+        primary: "#5C2061",
         secondary: "#FFFFFF",
-        green: "#152F29",
-        yellow: "#FFBE0B",
+        green: "#307C29",
+        red: "#FF0000",
       },
       fontFamily: {
-        raleway: ["Raleway", "sans-serif"],
+        lexend: ["Lexend", "sans-serif"],
       },
       screens: {
         xs: "480px",
