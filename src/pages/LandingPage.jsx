@@ -1,5 +1,29 @@
 import React, { useState } from "react";
-import { MenShoes, hero1, logo, product1, product2, product3, product4 } from "../assets";
+import {
+  MenShoes,
+  hero1,
+  logo,
+  newproduct1,
+  newproduct10,
+  newproduct11,
+  newproduct12,
+  newproduct13,
+  newproduct14,
+  newproduct15,
+  newproduct16,
+  newproduct2,
+  newproduct3,
+  newproduct4,
+  newproduct5,
+  newproduct6,
+  newproduct7,
+  newproduct8,
+  newproduct9,
+  product1,
+  product2,
+  product3,
+  product4,
+} from "../assets";
 import { RiUserLine } from "react-icons/ri";
 import { LiaAngleDownSolid } from "react-icons/lia";
 import { MdHelpOutline } from "react-icons/md";
@@ -21,6 +45,7 @@ import {
 } from "../Components/Contents";
 import { Link } from "react-router-dom";
 import ProductCard from "../Components/Cards/ProductCard";
+import GreenHeader from "../Components/Cards/GreenHeader";
 
 const products = [
   {
@@ -50,6 +75,152 @@ const products = [
     productClass: "Accessories",
     newP: "N10,999",
     oldP: "N18,822",
+  },
+];
+const newProducts = [
+  {
+    imageSrc: newproduct1,
+    title: "Casual Shoulder Sports Sling ",
+    productClass: "Sport bag",
+    newP: "N2,699",
+    oldP: "N40,196",
+  },
+  {
+    imageSrc: newproduct2,
+    title: "Titanium Steel Cuban Hip Hop",
+    productClass: "Necklace",
+    newP: "N1,780",
+    oldP: "N9,999",
+  },
+  {
+    imageSrc: newproduct3,
+    title: "Cidea Android 12 Adults 8 Inch ",
+    productClass: "Tablet 6GB Ram 256GB Rom...",
+    newP: "N68,160",
+    oldP: "N5,300",
+  },
+  {
+    imageSrc: newproduct4,
+    title: "Shoe Rack Foldable Assembly",
+    productClass: "Stainless Steel Silver 6 Layers",
+    newP: "N11,099",
+    oldP: "N18,822",
+  },
+  {
+    imageSrc: newproduct5,
+    title: "Mens Beach Shoes Outdoor ",
+    productClass: "EVA hole Sandals Black",
+    newP: "N12,500",
+    oldP: "N18,822",
+  },
+  {
+    imageSrc: newproduct6,
+    title: "Pure Black Long-Lasting ",
+    productClass: "Perfume",
+    newP: "N4,200",
+    oldP: "N5,000",
+  },
+  {
+    imageSrc: newproduct7,
+    title: "4 in 1 Fashion Backpacks with ",
+    productClass: "Extra Purse",
+    newP: "N11,099",
+    oldP: "N18,822",
+  },
+  {
+    imageSrc: newproduct8,
+    title: "Qasa Solar Strong Power ",
+    productClass: "Portable SPP-220 Easily...",
+    newP: "N205,099",
+    oldP: "N300,000",
+  },
+];
+const electronicsProducts = [
+  {
+    imageSrc: newproduct5,
+    title: "Mens Beach Shoes Outdoor ",
+    productClass: "EVA hole Sandals Black",
+    newP: "N12,500",
+    oldP: "N18,822",
+  },
+  {
+    imageSrc: newproduct6,
+    title: "Pure Black Long-Lasting ",
+    productClass: "Perfume",
+    newP: "N4,200",
+    oldP: "N5,000",
+  },
+  {
+    imageSrc: newproduct7,
+    title: "4 in 1 Fashion Backpacks with ",
+    productClass: "Extra Purse",
+    newP: "N11,099",
+    oldP: "N18,822",
+  },
+  {
+    imageSrc: newproduct8,
+    title: "Qasa Solar Strong Power ",
+    productClass: "Portable SPP-220 Easily...",
+    newP: "N205,099",
+    oldP: "N300,000",
+  },
+];
+const healthProducts = [
+  {
+    imageSrc: newproduct9,
+    title: "Bob'S Red Mill Whole Wheat",
+    productClass: "Pearl Couscous, 16 Oz 454g",
+    newP: "N7,100",
+  },
+  {
+    imageSrc: newproduct10,
+    title: "Milo Hot Chocolate Refill -",
+    productClass: "800g",
+    newP: "N4,200",
+    oldP: "N5,000",
+  },
+  {
+    imageSrc: newproduct11,
+    title: "Flat Tummy Tea With Moringa,",
+    productClass: "Slim Tea For Weightloss",
+    newP: "N11,099",
+    oldP: "N18,822",
+  },
+  {
+    imageSrc: newproduct12,
+    title: "Nittol Nittol Antibacterial",
+    productClass: "Detergent 160g",
+    newP: "N6,675",
+    oldP: "N7,500",
+  },
+];
+const supermarketProducts = [
+  {
+    imageSrc: newproduct13,
+    title: "Long Rich Brightening Hand",
+    productClass: "Cream",
+    newP: "N7,100",
+  },
+  {
+    imageSrc: newproduct14,
+    title: "NIVEA Perfect and Even Tone",
+    productClass: "Day/Night Cream for Women",
+    newP: "N4,200",
+    oldP: "N5,000",
+  },
+  {
+    imageSrc: newproduct15,
+    title: "4 in 1 Fashion Backpacks with ",
+    productClass: "Extra Purse",
+    newP: "N11,099",
+    oldP: "N18,822",
+  },
+  {
+    imageSrc: newproduct16,
+    title: "NIVEA Lip Care Shine bundle - ",
+    productClass: "Blackberry, Strawberry,.",
+    newP: "N6,675",
+    oldP: "N7,500",
   },
 ];
 
@@ -221,26 +392,88 @@ const LandingPage = () => {
           ))}
         </div>
         <button className="bg-white text-yellow px-8 py-4 text-2xl font-semibold border-2 my-8 shadow-lg border-yellow">
-          {" "}
           View All
         </button>
-        <div className="relative w-full my-6">
-          <img src={MenShoes} className="w-full lgss:h-auto h-[200px]" alt="hero-background" />
+        <div className="relative w-full mt-6 mb-10">
+          <img
+            src={MenShoes}
+            className="w-full lgss:h-auto h-[200px]"
+            alt="hero-background"
+          />
           <div className="absolute inset-0 bg-black opacity-60"></div>
           <div className="absolute inset-0 flex flex-col items-center justify-between py-10 text-white">
             <div className="text-center">
-            <p>Clothing, shoes & Jewelry</p>
-            <h2 className="lgss:text-[2rem] text-yellow font-semibold mb-4 uppercase">
-              men&apos;s shoes
-            </h2>
+              <p>Clothing, shoes & Jewelry</p>
+              <h2 className="lgss:text-[2rem] text-yellow font-semibold mb-4 uppercase">
+                men&apos;s shoes
+              </h2>
             </div>
             <button className="bg-yellow text-raleway py-3 px-10 font-semibold lgss:text-[2rem] rounded text-black">
               View
             </button>
           </div>
         </div>
+
+        {/* ================== New Arrivals ====================== */}
+        <div className="mt-6 py-2">
+          <h1 className="font-bold font-dm text-3xl">New Arrival</h1>
+        </div>
+      </div>
+      <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
+        {newProducts.map((product, index) => (
+          <ProductCard
+            key={index}
+            imageSrc={product.imageSrc}
+            title={product.title}
+            productClass={product.productClass}
+            newP={product.newP}
+            oldP={product.oldP}
+          />
+        ))}
       </div>
 
+      {/* =========health ===== */}
+      <div className="my-4">
+        <GreenHeader h2={"Health & Beauty"} />
+        <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
+          {healthProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              imageSrc={product.imageSrc}
+              title={product.title}
+              productClass={product.productClass}
+              newP={product.newP}
+              oldP={product.oldP}
+            />
+          ))}
+        </div>
+        <GreenHeader h2={"Supermarket"} />
+        <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
+          {supermarketProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              imageSrc={product.imageSrc}
+              title={product.title}
+              productClass={product.productClass}
+              newP={product.newP}
+              oldP={product.oldP}
+            />
+          ))}
+        </div>
+        <GreenHeader h2={"Electronics"} />
+        <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
+          {electronicsProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              imageSrc={product.imageSrc}
+              title={product.title}
+              productClass={product.productClass}
+              newP={product.newP}
+              oldP={product.oldP}
+            />
+          ))}
+        </div>
+      </div>
       {/* Modals */}
       <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
         <LoginForm
