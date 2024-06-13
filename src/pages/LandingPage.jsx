@@ -6,6 +6,13 @@ import { MdHelpOutline } from "react-icons/md";
 import { CgShoppingCart } from "react-icons/cg";
 import NewNavLinks from "../Components/NewNavLinks";
 import DropdownContent from "../Components/Dropdown";
+import Modal from "../Components/Modals";
+import LoginForm from "../Components/forms/LoginForm";
+import SignUpForm from "../Components/forms/SignupForm";
+import ResetPasswordForm from "../Components/forms/ResetPasswordForm";
+import CreateNewPasswordForm from "../Components/forms/NewPasswordForm";
+import VerifyEmail from "../Components/forms/VerifyEmailForm";
+import HelpCenter from "../Components/HelpCenter";
 import {
   supermarketContent,
   appliancesContent,
@@ -16,6 +23,14 @@ import {
 const LandingPage = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [dropdownContent, setDropdownContent] = useState([]);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] =
+    useState(false);
+  const [isCreateNewPasswordModalOpen, setIsCreateNewPasswordModalOpen] =
+    useState(false);
+  const [isVerifyEmailModalOpen, setIsVerifyEmailModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   const handleMouseEnter = (content) => {
     setDropdownContent(content);
@@ -24,6 +39,54 @@ const LandingPage = () => {
 
   const handleMouseLeave = () => {
     setShowDropdown(false);
+  };
+
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
+  const openSignUpModal = () => {
+    setIsSignUpModalOpen(true);
+  };
+
+  const closeSignUpModal = () => {
+    setIsSignUpModalOpen(false);
+  };
+
+  const openResetPasswordModal = () => {
+    setIsResetPasswordModalOpen(true);
+  };
+
+  const closeResetPasswordModal = () => {
+    setIsResetPasswordModalOpen(false);
+  };
+
+  const openCreateNewPasswordModal = () => {
+    setIsCreateNewPasswordModalOpen(true);
+  };
+
+  const closeCreateNewPasswordModal = () => {
+    setIsCreateNewPasswordModalOpen(false);
+  };
+
+  const openVerifyEmailModal = () => {
+    setIsVerifyEmailModalOpen(true);
+  };
+
+  const closeVerifyEmailModal = () => {
+    setIsVerifyEmailModalOpen(false);
+  };
+
+  const openHelpModal = () => {
+    setIsHelpModalOpen(true);
+  };
+
+  const closeHelpModal = () => {
+    setIsHelpModalOpen(false);
   };
 
   return (
@@ -42,11 +105,13 @@ const LandingPage = () => {
             link={"Account"}
             icon1={RiUserLine}
             icon2={LiaAngleDownSolid}
+            onClick={openLoginModal}
           />
           <NewNavLinks
             link={"Help"}
             icon1={MdHelpOutline}
             icon2={LiaAngleDownSolid}
+            onClick={openHelpModal}
           />
           <NewNavLinks link={"Cart"} icon1={CgShoppingCart} />
         </div>
@@ -64,9 +129,13 @@ const LandingPage = () => {
           <li onMouseEnter={() => handleMouseEnter(appliancesContent)}>
             appliances
           </li>
-          <li onMouseEnter={() => handleMouseEnter(healthContent)}>health & beauty</li>
+          <li onMouseEnter={() => handleMouseEnter(healthContent)}>
+            health & beauty
+          </li>
           <li onMouseEnter={() => handleMouseEnter(healthContent)}>fashion</li>
-          <li onMouseEnter={() => handleMouseEnter(electronicsContent)}>electronics</li>
+          <li onMouseEnter={() => handleMouseEnter(electronicsContent)}>
+            electronics
+          </li>
         </ul>
         {showDropdown && <DropdownContent content={dropdownContent} />}
       </div>
@@ -102,6 +171,60 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
+        <LoginForm
+          onSignUpClick={() => {
+            closeLoginModal();
+            openSignUpModal();
+          }}
+          onForgotPasswordClick={() => {
+            closeLoginModal();
+            openResetPasswordModal();
+          }}
+        />
+      </Modal>
+
+      <Modal isOpen={isSignUpModalOpen} onClose={closeSignUpModal}>
+        <SignUpForm
+          onLoginClick={() => {
+            closeSignUpModal();
+            openLoginModal();
+          }}
+          onSignUpSuccess={() => {
+            closeSignUpModal();
+            openVerifyEmailModal();
+          }}
+        />
+      </Modal>
+
+      <Modal
+        isOpen={isResetPasswordModalOpen}
+        onClose={closeResetPasswordModal}
+      >
+        <ResetPasswordForm
+          onCreateNewPasswordClick={() => {
+            closeResetPasswordModal();
+            openCreateNewPasswordModal();
+          }}
+        />
+      </Modal>
+
+      <Modal
+        isOpen={isCreateNewPasswordModalOpen}
+        onClose={closeCreateNewPasswordModal}
+      >
+        <CreateNewPasswordForm />
+      </Modal>
+
+      <Modal isOpen={isVerifyEmailModalOpen} onClose={closeVerifyEmailModal}>
+        <VerifyEmail />
+      </Modal>
+
+      <Modal isOpen={isHelpModalOpen} onClose={closeHelpModal}>
+        <HelpCenter />
+      </Modal>
     </div>
   );
 };

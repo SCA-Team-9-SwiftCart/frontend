@@ -1,45 +1,26 @@
-import React, { useState } from 'react';
-import FormComponent from './FormComponent';
+// CreateNewPasswordForm.js
+import React from "react";
 
 const NewPasswordForm = () => {
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle password reset logic
-  };
-  const handleClose = () => {
-    // Handle form close logic
-  };
-
-  const fields = [
-    {
-      type: 'password',
-      name: 'password',
-      value: password,
-      onChange: (e) => setPassword(e.target.value),
-      required: true,
-    },
-    {
-        type: 'password',
-        name: 'confirmpassword',
-        value: confirmPassword,
-        onChange: (e) => setConfirmPassword(e.target.value),
-        required: true,
-      },
-  ];
-
   return (
-    <FormComponent
-      title="CREATE NEW PASSWORD"
-      fields={fields}
-      onSubmit={handleSubmit}
-      onClose={handleClose}>
-      <button type="submit">Submit</button>
-
-    </FormComponent>
-
+    <div>
+      <h2 className="text-2xl font-semibold mb-4 text-center">
+        Create New Password
+      </h2>
+      <form className="space-y-4">
+        <div>
+          <label>New Password *</label>
+          <input type="password" className="w-full p-2 border" required />
+        </div>
+        <div>
+          <label>Confirm New Password *</label>
+          <input type="password" className="w-full p-2 border" required />
+        </div>
+        <button type="submit" className="w-full py-2 bg-black text-white">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 

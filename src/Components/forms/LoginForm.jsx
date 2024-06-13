@@ -1,62 +1,70 @@
-import React, { useState } from 'react';
-import FormComponent from './FormComponent';
+import React from "react";
+import { google } from "../../assets";
 
-const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle login logic
-  };
-
-  const handleClose = () => {
-    // Handle form close logic
-  };
-
-  const fields = [
-    {
-      type: 'email',
-      name: 'email',
-      value: email,
-      onChange: (e) => setEmail(e.target.value),
-      required: true,
-    },
-    {
-      type: 'password',
-      name: 'password',
-      value: password,
-      onChange: (e) => setPassword(e.target.value),
-      required: true,
-    },
-  ];
-
+const LoginForm = ({ onSignUpClick, onForgotPasswordClick }) => {
   return (
-    <FormComponent
-      title="LOGIN"
-      fields={fields}
-      onSubmit={handleSubmit}
-      onClose={handleClose}>
-        <div className="login-remember">
-        <input
-          type="checkbox"
-          name="remember"
-          checked={remember}
-          onChange={(e) => setRemember(e.target.checked)}
-        />
-        <p>Remember Me <span>Forgot your password</span></p>
-      </div>
-      <button type="submit">Log in</button>
-      <div>
-        <p>or</p>
-        <button type="button" onClick={() => { /* Handle Google login logic */ }}>
+    <div>
+      <h2 className="text-2xl font-bold mb-4 text-center">LOGIN</h2>
+      <form className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-1">
+            Email address
+          </label>
+          <input
+            type="email"
+            className="w-full p-2 border border-gray-300 rounded"
+            placeholder="Email address *"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Password *</label>
+          <input
+            type="password"
+            className="w-full p-2 border border-gray-300 rounded"
+            placeholder="Password *"
+          />
+        </div>
+        <div className="flex justify-between items-center">
+          <label className="inline-flex items-center">
+            <input type="checkbox" className="form-checkbox" />
+            <span className="ml-2">Remember me</span>
+          </label>
+          <a
+            href="#"
+            className="text-sm text-black font-semibold"
+            onClick={(e) => {
+              e.preventDefault();
+              onForgotPasswordClick();
+            }}
+          >
+            Forgot your password?
+          </a>
+        </div>
+        <button className="w-full py-2 bg-black font-semibold text-white rounded">
+          Log in
+        </button>
+      </form>
+      <div className="text-center mt-4">
+        <p>Or</p>
+        <button className="w-full py-2 bg-black text-white rounded mt-2 flex gap-4 justify-center items-center">
+          <img src={google} alt="" />
           Continue with Google
         </button>
+        <p className="mt-4">
+          Don't have an Account?{" "}
+          <a
+            href="#"
+            className="text-black font-bold"
+            onClick={(e) => {
+              e.preventDefault();
+              onSignUpClick();
+            }}
+          >
+            Sign up
+          </a>
+        </p>
       </div>
-      <p className='login-signup'>Don't have an account? <span>Sign up</span></p>
-    </FormComponent>
-
+    </div>
   );
 };
 

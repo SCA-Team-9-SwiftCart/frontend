@@ -1,37 +1,25 @@
-import React, { useState } from 'react';
-import FormComponent from './FormComponent';
+// ResetPasswordForm.js
+import React from "react";
 
-const ResetPasswordForm = () => {
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle password reset request logic
-  };
-  const handleClose = () => {
-    // Handle form close logic
-  };
-
-  const fields = [
-    {
-      type: 'email',
-      name: 'email',
-      value: email,
-      onChange: (e) => setEmail(e.target.value),
-      required: true,
-    },
-  ];
-
+const ResetPasswordForm = ({ onCreateNewPasswordClick }) => {
   return (
-    <FormComponent
-      title="RESET PASSWORD"
-      fields={fields}
-      onSubmit={handleSubmit}
-      onClose={handleClose}>
-      <button type="submit">Reset Password</button>
-
-    </FormComponent>
-
+    <div>
+      <h2 className="text-2xl font-semibold mb-4 text-center">
+        Reset Password
+      </h2>
+      <form className="space-y-4">
+        <div>
+          <input type="email" className="w-full p-2 border" required placeholder="Email address *"/>
+        </div>
+        <button
+          type="submit"
+          className="w-full py-2 bg-black text-white"
+          onClick={onCreateNewPasswordClick}
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 
