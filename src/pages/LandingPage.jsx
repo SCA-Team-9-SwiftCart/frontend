@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { hero1, logo } from "../assets";
+import { MenShoes, hero1, logo, product1, product2, product3, product4 } from "../assets";
 import { RiUserLine } from "react-icons/ri";
 import { LiaAngleDownSolid } from "react-icons/lia";
 import { MdHelpOutline } from "react-icons/md";
@@ -20,6 +20,38 @@ import {
   healthContent,
 } from "../Components/Contents";
 import { Link } from "react-router-dom";
+import ProductCard from "../Components/Cards/ProductCard";
+
+const products = [
+  {
+    imageSrc: product1,
+    title: "Modern Ceiling Light Modern",
+    productClass: "Ceiling Fan",
+    newP: "N27,749",
+    oldP: "N40,196",
+  },
+  {
+    imageSrc: product2,
+    title: "Adidas Nike Sneakers",
+    productClass: "Shoes",
+    newP: "N5,900",
+    oldP: "N9,999",
+  },
+  {
+    imageSrc: product3,
+    title: "Digital Wall Clock",
+    productClass: "Accessories",
+    newP: "N3,200",
+    oldP: "N5,300",
+  },
+  {
+    imageSrc: product4,
+    title: "Digital WristWatch",
+    productClass: "Accessories",
+    newP: "N10,999",
+    oldP: "N18,822",
+  },
+];
 
 const LandingPage = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -95,7 +127,7 @@ const LandingPage = () => {
       <nav className="flex w-full items-center justify-between gap-8 h-[60px]">
         <div className="w-full lgss:w-[50%] flex justify-between gap-7">
           <Link to={"/"}>
-          <img src={logo} alt="" />
+            <img src={logo} alt="" />
           </Link>
           <input
             type="text"
@@ -144,7 +176,7 @@ const LandingPage = () => {
       </div>
 
       {/* ================ Hero Section =============== */}
-      <div className="relative w-full">
+      <div className="relative w-full mt-6">
         <img src={hero1} className="w-full" alt="hero-background" />
         <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="absolute inset-0 flex flex-col items-start px-[5%] justify-center text-white">
@@ -161,7 +193,7 @@ const LandingPage = () => {
       </div>
 
       {/* ================ Trendy Section =============== */}
-      <div className="w-full my-10 flex flex-col justify-center items-center">
+      <div className="w-full my-10 flex flex-col justify-center items-center bg-[#F9F9F9]">
         <div className="bg-green text-secondary w-full rounded-t-[16px] h-16 flex justify-between items-center px-5">
           <h2 className="font-semibold lgss:text-[1.3rem]">
             Handpicked for you
@@ -173,8 +205,39 @@ const LandingPage = () => {
             <LiaAngleDownSolid />
           </div>
         </div>
-        <div className="my-8 py-4">
+        <div className="my-6 py-2">
           <h1 className="font-bold font-dm text-3xl">Trending Now</h1>
+        </div>
+        <div className="grid lgss:grid-cols-4 gap-7 w-full py-4">
+          {products.map((product, index) => (
+            <ProductCard
+              key={index}
+              imageSrc={product.imageSrc}
+              title={product.title}
+              productClass={product.productClass}
+              newP={product.newP}
+              oldP={product.oldP}
+            />
+          ))}
+        </div>
+        <button className="bg-white text-yellow px-8 py-4 text-2xl font-semibold border-2 my-8 shadow-lg border-yellow">
+          {" "}
+          View All
+        </button>
+        <div className="relative w-full my-6">
+          <img src={MenShoes} className="w-full lgss:h-auto h-[200px]" alt="hero-background" />
+          <div className="absolute inset-0 bg-black opacity-60"></div>
+          <div className="absolute inset-0 flex flex-col items-center justify-between py-10 text-white">
+            <div className="text-center">
+            <p>Clothing, shoes & Jewelry</p>
+            <h2 className="lgss:text-[2rem] text-yellow font-semibold mb-4 uppercase">
+              men&apos;s shoes
+            </h2>
+            </div>
+            <button className="bg-yellow text-raleway py-3 px-10 font-semibold lgss:text-[2rem] rounded text-black">
+              View
+            </button>
+          </div>
         </div>
       </div>
 

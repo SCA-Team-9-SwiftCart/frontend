@@ -9,11 +9,21 @@ const SignUpForm = ({ onLoginClick }) => {
       <form className="space-y-4">
         <div>
           <label>Email address *</label>
-          <input type="email" className="w-full p-2 border" required />
+          <input
+            type="email"
+            className="w-full p-2 border"
+            required
+            placeholder="Email address *"
+          />
         </div>
         <div>
           <label>Password *</label>
-          <input type="password" className="w-full p-2 border" required />
+          <input
+            type="password"
+            className="w-full p-2 border"
+            required
+            placeholder="Password *"
+          />
         </div>
         <button type="submit" className="w-full py-2 bg-black text-white">
           Sign up
@@ -26,7 +36,10 @@ const SignUpForm = ({ onLoginClick }) => {
       </button>
       <div className="text-center mt-4">
         Already have an Account?{" "}
-        <span onClick={onLoginClick} className="text-black font-bold cursor-pointer">
+        <span
+          onClick={onLoginClick}
+          className="text-black font-bold cursor-pointer"
+        >
           Log in
         </span>
       </div>

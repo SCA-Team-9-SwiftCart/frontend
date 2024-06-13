@@ -12,15 +12,15 @@ const LoginForm = ({ onSignUpClick, onForgotPasswordClick }) => {
           </label>
           <input
             type="email"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 rounded"
             placeholder="Email address *"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Password *</label>
+          <label className="block text-sm font-medium mb-1">Password</label>
           <input
             type="password"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 rounded"
             placeholder="Password *"
           />
         </div>
