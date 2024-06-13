@@ -19,6 +19,7 @@ import {
   electronicsContent,
   healthContent,
 } from "../Components/Contents";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -93,7 +94,9 @@ const LandingPage = () => {
     <div className="h-[100vh] w-full bg-white text-black pt-10 px-[5%] flex flex-col">
       <nav className="flex w-full items-center justify-between gap-8 h-[60px]">
         <div className="w-full lgss:w-[50%] flex justify-between gap-7">
-          <img src={logo} alt="" className="w-[40%] lgss:w-[30%] lgss:h-11" />
+          <Link to={"/"}>
+          <img src={logo} alt="" />
+          </Link>
           <input
             type="text"
             className="py- px-2 w-[60%] outline-none border border-black"
@@ -158,7 +161,7 @@ const LandingPage = () => {
       </div>
 
       {/* ================ Trendy Section =============== */}
-      <div className="w-full my-10">
+      <div className="w-full my-10 flex flex-col justify-center items-center">
         <div className="bg-green text-secondary w-full rounded-t-[16px] h-16 flex justify-between items-center px-5">
           <h2 className="font-semibold lgss:text-[1.3rem]">
             Handpicked for you
@@ -169,6 +172,9 @@ const LandingPage = () => {
             <p>Category</p>
             <LiaAngleDownSolid />
           </div>
+        </div>
+        <div className="my-8 py-4">
+          <h1 className="font-bold font-dm text-3xl">Trending Now</h1>
         </div>
       </div>
 
