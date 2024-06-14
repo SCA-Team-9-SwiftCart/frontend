@@ -46,6 +46,7 @@ import {
 import { Link } from "react-router-dom";
 import ProductCard from "../Components/Cards/ProductCard";
 import GreenHeader from "../Components/Cards/GreenHeader";
+import Footer from "../Components/Footer";
 
 const products = [
   {
@@ -294,240 +295,247 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="h-[100vh] w-full bg-white text-black pt-10 px-[5%] flex flex-col">
-      <nav className="flex w-full items-center justify-between gap-8 h-[60px]">
-        <div className="w-full lgss:w-[50%] flex justify-between gap-7">
-          <Link to={"/"}>
-            <img src={logo} alt="" />
-          </Link>
-          <input
-            type="text"
-            className="py- px-2 w-[60%] outline-none border border-black"
-            placeholder="Search products..."
-          />
-        </div>
-        <div className="lgss:w-[30%] hidden lgss:flex gap-10 justify-center items-center">
-          <NewNavLinks
-            link={"Account"}
-            icon1={RiUserLine}
-            icon2={LiaAngleDownSolid}
-            onClick={openLoginModal}
-          />
-          <NewNavLinks
-            link={"Help"}
-            icon1={MdHelpOutline}
-            icon2={LiaAngleDownSolid}
-            onClick={openHelpModal}
-          />
-          <NewNavLinks link={"Cart"} icon1={CgShoppingCart} />
-        </div>
-      </nav>
-
-      {/* ================ products nav menu =============== */}
-      <div
-        className="mb-5 hidden lgss:flex relative"
-        onMouseLeave={handleMouseLeave}
-      >
-        <ul className="flex w-full justify-between items-center uppercase font-semibold list-none pt-10 px-[10%] cursor-pointer">
-          <li onMouseEnter={() => handleMouseEnter(supermarketContent)}>
-            supermarket
-          </li>
-          <li onMouseEnter={() => handleMouseEnter(appliancesContent)}>
-            appliances
-          </li>
-          <li onMouseEnter={() => handleMouseEnter(healthContent)}>
-            health & beauty
-          </li>
-          <li onMouseEnter={() => handleMouseEnter(healthContent)}>fashion</li>
-          <li onMouseEnter={() => handleMouseEnter(electronicsContent)}>
-            electronics
-          </li>
-        </ul>
-        {showDropdown && <DropdownContent content={dropdownContent} />}
-      </div>
-
-      {/* ================ Hero Section =============== */}
-      <div className="relative w-full mt-6">
-        <img src={hero1} className="w-full" alt="hero-background" />
-        <div className="absolute inset-0 bg-black opacity-60"></div>
-        <div className="absolute inset-0 flex flex-col items-start px-[5%] justify-center text-white">
-          <h2 className="lgss:text-[3rem] text-yellow font-bold mb-4">
-            Swift<span className="text-white">Cart</span>
-          </h2>
-          <h1 className="lgss:text-[6rem] w-[30%] font-semibold mb-6 lgss:leading-[8rem]">
-            Shopping Festival
-          </h1>
-          <button className="bg-yellow text-raleway text-white py-3 px-6 lgss:text-[1.5rem] rounded">
-            Up to 50% off
-          </button>
-        </div>
-      </div>
-
-      {/* ================ Trendy Section =============== */}
-      <div className="w-full my-10 flex flex-col justify-center items-center bg-[#F9F9F9]">
-        <div className="bg-green text-secondary w-full rounded-t-[16px] h-16 flex justify-between items-center px-5">
-          <h2 className="font-semibold lgss:text-[1.3rem]">
-            Handpicked for you
-          </h2>
-
-          <div className="flex justify-center items-center gap-2">
-            <span className="font-medium">Sort by:</span>
-            <p>Category</p>
-            <LiaAngleDownSolid />
-          </div>
-        </div>
-        <div className="my-6 py-2">
-          <h1 className="font-bold font-dm text-3xl">Trending Now</h1>
-        </div>
-        <div className="grid lgss:grid-cols-4 gap-7 w-full py-4">
-          {products.map((product, index) => (
-            <ProductCard
-              key={index}
-              imageSrc={product.imageSrc}
-              title={product.title}
-              productClass={product.productClass}
-              newP={product.newP}
-              oldP={product.oldP}
+    <>
+      <div className="w-full bg-white text-black pt-10 px-[5%] flex flex-col">
+        <nav className="flex w-full items-center justify-between gap-8 h-[60px]">
+          <div className="w-full lgss:w-[50%] flex justify-between gap-7">
+            <Link to={"/"}>
+              <img src={logo} alt="" />
+            </Link>
+            <input
+              type="text"
+              className="py- px-2 w-[60%] outline-none border border-black"
+              placeholder="Search products..."
             />
-          ))}
+          </div>
+          <div className="lgss:w-[30%] hidden lgss:flex gap-10 justify-center items-center">
+            <NewNavLinks
+              link={"Account"}
+              icon1={RiUserLine}
+              icon2={LiaAngleDownSolid}
+              onClick={openLoginModal}
+            />
+            <NewNavLinks
+              link={"Help"}
+              icon1={MdHelpOutline}
+              icon2={LiaAngleDownSolid}
+              onClick={openHelpModal}
+            />
+            <NewNavLinks link={"Cart"} icon1={CgShoppingCart} />
+          </div>
+        </nav>
+
+        {/* ================ products nav menu =============== */}
+        <div
+          className="mb-5 hidden lgss:flex relative"
+          onMouseLeave={handleMouseLeave}
+        >
+          <ul className="flex w-full justify-between items-center uppercase font-semibold list-none pt-10 px-[10%] cursor-pointer">
+            <li onMouseEnter={() => handleMouseEnter(supermarketContent)}>
+              supermarket
+            </li>
+            <li onMouseEnter={() => handleMouseEnter(appliancesContent)}>
+              appliances
+            </li>
+            <li onMouseEnter={() => handleMouseEnter(healthContent)}>
+              health & beauty
+            </li>
+            <li onMouseEnter={() => handleMouseEnter(healthContent)}>
+              fashion
+            </li>
+            <li onMouseEnter={() => handleMouseEnter(electronicsContent)}>
+              electronics
+            </li>
+          </ul>
+          {showDropdown && <DropdownContent content={dropdownContent} />}
         </div>
-        <button className="bg-white text-yellow px-8 py-4 text-2xl font-semibold border-2 my-8 shadow-lg border-yellow">
-          View All
-        </button>
-        <div className="relative w-full mt-6 mb-10">
-          <img
-            src={MenShoes}
-            className="w-full lgss:h-auto h-[200px]"
-            alt="hero-background"
-          />
+
+        {/* ================ Hero Section =============== */}
+        <div className="relative w-full mt-6">
+          <img src={hero1} className="w-full" alt="hero-background" />
           <div className="absolute inset-0 bg-black opacity-60"></div>
-          <div className="absolute inset-0 flex flex-col items-center justify-between py-10 text-white">
-            <div className="text-center">
-              <p>Clothing, shoes & Jewelry</p>
-              <h2 className="lgss:text-[2rem] text-yellow font-semibold mb-4 uppercase">
-                men&apos;s shoes
-              </h2>
-            </div>
-            <button className="bg-yellow text-raleway py-3 px-10 font-semibold lgss:text-[2rem] rounded text-black">
-              View
+          <div className="absolute inset-0 flex flex-col items-start px-[5%] justify-center text-white">
+            <h2 className="lgss:text-[3rem] text-yellow font-bold mb-4">
+              Swift<span className="text-white">Cart</span>
+            </h2>
+            <h1 className="lgss:text-[6rem] w-[30%] font-semibold mb-6 lgss:leading-[8rem]">
+              Shopping Festival
+            </h1>
+            <button className="bg-yellow text-raleway text-white py-3 px-6 lgss:text-[1.5rem] rounded">
+              Up to 50% off
             </button>
           </div>
         </div>
 
-        {/* ================== New Arrivals ====================== */}
-        <div className="mt-6 py-2">
-          <h1 className="font-bold font-dm text-3xl">New Arrival</h1>
+        {/* ================ Trendy Section =============== */}
+        <div className="w-full my-10 flex flex-col justify-center items-center bg-[#F9F9F9]">
+          <div className="bg-green text-secondary w-full rounded-t-[16px] h-16 flex justify-between items-center px-5">
+            <h2 className="font-semibold lgss:text-[1.3rem]">
+              Handpicked for you
+            </h2>
+
+            <div className="flex justify-center items-center gap-2">
+              <span className="font-medium">Sort by:</span>
+              <p>Category</p>
+              <LiaAngleDownSolid />
+            </div>
+          </div>
+          <div className="my-6 py-2">
+            <h1 className="font-bold font-dm text-3xl">Trending Now</h1>
+          </div>
+          <div className="grid lgss:grid-cols-4 gap-7 w-full py-4">
+            {products.map((product, index) => (
+              <ProductCard
+                key={index}
+                imageSrc={product.imageSrc}
+                title={product.title}
+                productClass={product.productClass}
+                newP={product.newP}
+                oldP={product.oldP}
+              />
+            ))}
+          </div>
+          <button className="bg-white text-yellow px-8 py-4 text-2xl font-semibold border-2 my-8 shadow-lg border-yellow">
+            View All
+          </button>
+          <div className="relative w-full mt-6 mb-10">
+            <img
+              src={MenShoes}
+              className="w-full lgss:h-auto h-[200px]"
+              alt="hero-background"
+            />
+            <div className="absolute inset-0 bg-black opacity-60"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-between py-10 text-white">
+              <div className="text-center">
+                <p>Clothing, shoes & Jewelry</p>
+                <h2 className="lgss:text-[2rem] text-yellow font-semibold mb-4 uppercase">
+                  men&apos;s shoes
+                </h2>
+              </div>
+              <button className="bg-yellow text-raleway py-3 px-10 font-semibold lgss:text-[2rem] rounded text-black">
+                View
+              </button>
+            </div>
+          </div>
+
+          {/* ================== New Arrivals ====================== */}
+          <div className="mt-6 py-2">
+            <h1 className="font-bold font-dm text-3xl">New Arrival</h1>
+          </div>
         </div>
-      </div>
-      <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
-        {newProducts.map((product, index) => (
-          <ProductCard
-            key={index}
-            imageSrc={product.imageSrc}
-            title={product.title}
-            productClass={product.productClass}
-            newP={product.newP}
-            oldP={product.oldP}
+        <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
+          {newProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              imageSrc={product.imageSrc}
+              title={product.title}
+              productClass={product.productClass}
+              newP={product.newP}
+              oldP={product.oldP}
+            />
+          ))}
+        </div>
+
+        {/* =========health ===== */}
+        <div className="my-4">
+          <GreenHeader h2={"Health & Beauty"} />
+          <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
+            {healthProducts.map((product, index) => (
+              <ProductCard
+                key={index}
+                imageSrc={product.imageSrc}
+                title={product.title}
+                productClass={product.productClass}
+                newP={product.newP}
+                oldP={product.oldP}
+              />
+            ))}
+          </div>
+          <GreenHeader h2={"Supermarket"} />
+          <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
+            {supermarketProducts.map((product, index) => (
+              <ProductCard
+                key={index}
+                imageSrc={product.imageSrc}
+                title={product.title}
+                productClass={product.productClass}
+                newP={product.newP}
+                oldP={product.oldP}
+              />
+            ))}
+          </div>
+          <GreenHeader h2={"Electronics"} />
+          <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
+            {electronicsProducts.map((product, index) => (
+              <ProductCard
+                key={index}
+                imageSrc={product.imageSrc}
+                title={product.title}
+                productClass={product.productClass}
+                newP={product.newP}
+                oldP={product.oldP}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Modals */}
+        <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
+          <LoginForm
+            onSignUpClick={() => {
+              closeLoginModal();
+              openSignUpModal();
+            }}
+            onForgotPasswordClick={() => {
+              closeLoginModal();
+              openResetPasswordModal();
+            }}
           />
-        ))}
+        </Modal>
+
+        <Modal isOpen={isSignUpModalOpen} onClose={closeSignUpModal}>
+          <SignUpForm
+            onLoginClick={() => {
+              closeSignUpModal();
+              openLoginModal();
+            }}
+            onSignUpSuccess={() => {
+              closeSignUpModal();
+              openVerifyEmailModal();
+            }}
+          />
+        </Modal>
+
+        <Modal
+          isOpen={isResetPasswordModalOpen}
+          onClose={closeResetPasswordModal}
+        >
+          <ResetPasswordForm
+            onCreateNewPasswordClick={() => {
+              closeResetPasswordModal();
+              openCreateNewPasswordModal();
+            }}
+          />
+        </Modal>
+
+        <Modal
+          isOpen={isCreateNewPasswordModalOpen}
+          onClose={closeCreateNewPasswordModal}
+        >
+          <CreateNewPasswordForm />
+        </Modal>
+
+        <Modal isOpen={isVerifyEmailModalOpen} onClose={closeVerifyEmailModal}>
+          <VerifyEmail />
+        </Modal>
+
+        <Modal isOpen={isHelpModalOpen} onClose={closeHelpModal}>
+          <HelpCenter />
+        </Modal>
       </div>
-
-      {/* =========health ===== */}
-      <div className="my-4">
-        <GreenHeader h2={"Health & Beauty"} />
-        <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
-          {healthProducts.map((product, index) => (
-            <ProductCard
-              key={index}
-              imageSrc={product.imageSrc}
-              title={product.title}
-              productClass={product.productClass}
-              newP={product.newP}
-              oldP={product.oldP}
-            />
-          ))}
-        </div>
-        <GreenHeader h2={"Supermarket"} />
-        <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
-          {supermarketProducts.map((product, index) => (
-            <ProductCard
-              key={index}
-              imageSrc={product.imageSrc}
-              title={product.title}
-              productClass={product.productClass}
-              newP={product.newP}
-              oldP={product.oldP}
-            />
-          ))}
-        </div>
-        <GreenHeader h2={"Electronics"} />
-        <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
-          {electronicsProducts.map((product, index) => (
-            <ProductCard
-              key={index}
-              imageSrc={product.imageSrc}
-              title={product.title}
-              productClass={product.productClass}
-              newP={product.newP}
-              oldP={product.oldP}
-            />
-          ))}
-        </div>
-      </div>
-      {/* Modals */}
-      <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
-        <LoginForm
-          onSignUpClick={() => {
-            closeLoginModal();
-            openSignUpModal();
-          }}
-          onForgotPasswordClick={() => {
-            closeLoginModal();
-            openResetPasswordModal();
-          }}
-        />
-      </Modal>
-
-      <Modal isOpen={isSignUpModalOpen} onClose={closeSignUpModal}>
-        <SignUpForm
-          onLoginClick={() => {
-            closeSignUpModal();
-            openLoginModal();
-          }}
-          onSignUpSuccess={() => {
-            closeSignUpModal();
-            openVerifyEmailModal();
-          }}
-        />
-      </Modal>
-
-      <Modal
-        isOpen={isResetPasswordModalOpen}
-        onClose={closeResetPasswordModal}
-      >
-        <ResetPasswordForm
-          onCreateNewPasswordClick={() => {
-            closeResetPasswordModal();
-            openCreateNewPasswordModal();
-          }}
-        />
-      </Modal>
-
-      <Modal
-        isOpen={isCreateNewPasswordModalOpen}
-        onClose={closeCreateNewPasswordModal}
-      >
-        <CreateNewPasswordForm />
-      </Modal>
-
-      <Modal isOpen={isVerifyEmailModalOpen} onClose={closeVerifyEmailModal}>
-        <VerifyEmail />
-      </Modal>
-
-      <Modal isOpen={isHelpModalOpen} onClose={closeHelpModal}>
-        <HelpCenter />
-      </Modal>
-    </div>
+      {/* ================== footer ================ */}
+      <Footer />
+    </>
   );
 };
 

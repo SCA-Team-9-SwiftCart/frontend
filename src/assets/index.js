@@ -22,6 +22,9 @@ import newproduct13 from "../assets/images/newproduct13.png";
 import newproduct14 from "../assets/images/newproduct14.png";
 import newproduct15 from "../assets/images/newproduct15.png";
 import newproduct16 from "../assets/images/newproduct16.png";
+import footer1 from "../assets/images/footer1.png";
+import footer2 from "../assets/images/footer2.png";
+import footer3 from "../assets/images/footer3.png";
 
 export {
   logo,
@@ -48,4 +51,7 @@ export {
   newproduct14,
   newproduct15,
   newproduct16,
+  footer1,
+  footer2,
+  footer3,
 };
