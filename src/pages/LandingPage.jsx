@@ -1,4 +1,17 @@
 import React, { useState } from "react";
+import { RiUserLine } from "react-icons/ri";
+import { LiaAngleDownSolid } from "react-icons/lia";
+import { MdHelpOutline } from "react-icons/md";
+import { CgShoppingCart } from "react-icons/cg";
+import NewNavLinks from "../Components/NewNavLinks";
+import DropdownContent from "../Components/Dropdown";
+import Modal from "../Components/Modals";
+import LoginForm from "../Components/forms/LoginForm";
+import SignUpForm from "../Components/forms/SignupForm";
+import ResetPasswordForm from "../Components/forms/ResetPasswordForm";
+import CreateNewPasswordForm from "../Components/forms/NewPasswordForm";
+import VerifyEmail from "../Components/forms/VerifyEmailForm";
+import HelpCenter from "../Components/HelpCenter";
 import {
   MenShoes,
   hero1,
@@ -24,19 +37,6 @@ import {
   product3,
   product4,
 } from "../assets";
-import { RiUserLine } from "react-icons/ri";
-import { LiaAngleDownSolid } from "react-icons/lia";
-import { MdHelpOutline } from "react-icons/md";
-import { CgShoppingCart } from "react-icons/cg";
-import NewNavLinks from "../Components/NewNavLinks";
-import DropdownContent from "../Components/Dropdown";
-import Modal from "../Components/Modals";
-import LoginForm from "../Components/forms/LoginForm";
-import SignUpForm from "../Components/forms/SignupForm";
-import ResetPasswordForm from "../Components/forms/ResetPasswordForm";
-import CreateNewPasswordForm from "../Components/forms/NewPasswordForm";
-import VerifyEmail from "../Components/forms/VerifyEmailForm";
-import HelpCenter from "../Components/HelpCenter";
 import {
   supermarketContent,
   appliancesContent,
@@ -47,6 +47,7 @@ import { Link } from "react-router-dom";
 import ProductCard from "../Components/Cards/ProductCard";
 import GreenHeader from "../Components/Cards/GreenHeader";
 import Footer from "../Components/Footer";
+import QuickViewModal from "../Components/modals/QuickViewModal";
 
 const products = [
   {
@@ -236,6 +237,8 @@ const LandingPage = () => {
     useState(false);
   const [isVerifyEmailModalOpen, setIsVerifyEmailModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [isQuickViewModalOpen, setIsQuickViewModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleMouseEnter = (content) => {
     setDropdownContent(content);
@@ -294,8 +297,26 @@ const LandingPage = () => {
     setIsHelpModalOpen(false);
   };
 
+  const openQuickViewModal = (product) => {
+    setSelectedProduct(product);
+    setIsQuickViewModalOpen(true);
+  };
+
+  const closeQuickViewModal = () => {
+    setIsQuickViewModalOpen(false);
+    setSelectedProduct(null);
+  };
+
+  const handleAddToCart = (product, quantity) => {
+    console.log(`Adding ${quantity} of ${product.title} to cart`);
+    if (!isUserSignedIn) {
+      openLoginModal();
+    } else {
+    }
+  };
+
   return (
-    <>
+    <div className="w-full">
       <div className="w-full bg-white text-black pt-10 px-[5%] flex flex-col">
         <nav className="flex w-full items-center justify-between gap-8 h-[60px]">
           <div className="w-full lgss:w-[50%] flex justify-between gap-7">
@@ -321,10 +342,13 @@ const LandingPage = () => {
               icon2={LiaAngleDownSolid}
               onClick={openHelpModal}
             />
-            <NewNavLinks link={"Cart"} icon1={CgShoppingCart} />
+            <NewNavLinks
+              link={"Cart"}
+              icon1={CgShoppingCart}
+              icon2={LiaAngleDownSolid}
+            />
           </div>
         </nav>
-
         {/* ================ products nav menu =============== */}
         <div
           className="mb-5 hidden lgss:flex relative"
@@ -349,7 +373,6 @@ const LandingPage = () => {
           </ul>
           {showDropdown && <DropdownContent content={dropdownContent} />}
         </div>
-
         {/* ================ Hero Section =============== */}
         <div className="relative w-full mt-6">
           <img src={hero1} className="w-full" alt="hero-background" />
@@ -366,9 +389,9 @@ const LandingPage = () => {
             </button>
           </div>
         </div>
-
         {/* ================ Trendy Section =============== */}
         <div className="w-full my-10 flex flex-col justify-center items-center bg-[#F9F9F9]">
+          {/* ==========hanpicked ============== */}
           <div className="bg-green text-secondary w-full rounded-t-[16px] h-16 flex justify-between items-center px-5">
             <h2 className="font-semibold lgss:text-[1.3rem]">
               Handpicked for you
@@ -383,6 +406,7 @@ const LandingPage = () => {
           <div className="my-6 py-2">
             <h1 className="font-bold font-dm text-3xl">Trending Now</h1>
           </div>
+
           <div className="grid lgss:grid-cols-4 gap-7 w-full py-4">
             {products.map((product, index) => (
               <ProductCard
@@ -392,9 +416,11 @@ const LandingPage = () => {
                 productClass={product.productClass}
                 newP={product.newP}
                 oldP={product.oldP}
+                onAddToCartClick={() => openQuickViewModal(product)}
               />
             ))}
           </div>
+
           <button className="bg-white text-yellow px-8 py-4 text-2xl font-semibold border-2 my-8 shadow-lg border-yellow">
             View All
           </button>
@@ -423,8 +449,8 @@ const LandingPage = () => {
             <h1 className="font-bold font-dm text-3xl">New Arrival</h1>
           </div>
         </div>
-        <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
-          {newProducts.map((product, index) => (
+        <div className="grid gap-8 py-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {products.map((product, index) => (
             <ProductCard
               key={index}
               imageSrc={product.imageSrc}
@@ -432,11 +458,20 @@ const LandingPage = () => {
               productClass={product.productClass}
               newP={product.newP}
               oldP={product.oldP}
+              onAddToCartClick={() => openQuickViewModal(product)}
             />
           ))}
         </div>
+        {selectedProduct && (
+          <QuickViewModal
+            isOpen={isQuickViewModalOpen}
+            onClose={closeQuickViewModal}
+            product={selectedProduct}
+            onAddToCart={handleAddToCart}
+          />
+        )}
 
-        {/* =========health ===== */}
+        {/* // =========health ===== */}
         <div className="my-4">
           <GreenHeader h2={"Health & Beauty"} />
           <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
@@ -448,6 +483,7 @@ const LandingPage = () => {
                 productClass={product.productClass}
                 newP={product.newP}
                 oldP={product.oldP}
+                onAddToCartClick={() => openQuickViewModal(product)}
               />
             ))}
           </div>
@@ -461,6 +497,7 @@ const LandingPage = () => {
                 productClass={product.productClass}
                 newP={product.newP}
                 oldP={product.oldP}
+                onAddToCartClick={() => openQuickViewModal(product)}
               />
             ))}
           </div>
@@ -474,68 +511,52 @@ const LandingPage = () => {
                 productClass={product.productClass}
                 newP={product.newP}
                 oldP={product.oldP}
+                onAddToCartClick={() => openQuickViewModal(product)}
               />
             ))}
           </div>
         </div>
 
-        {/* Modals */}
+        {/* ========= modals ==========*/}
+
         <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
           <LoginForm
-            onSignUpClick={() => {
-              closeLoginModal();
-              openSignUpModal();
-            }}
-            onForgotPasswordClick={() => {
-              closeLoginModal();
-              openResetPasswordModal();
-            }}
+            onSignupClick={openSignUpModal}
+            onForgotPasswordClick={openResetPasswordModal}
+            onClose={closeLoginModal}
           />
         </Modal>
-
         <Modal isOpen={isSignUpModalOpen} onClose={closeSignUpModal}>
-          <SignUpForm
-            onLoginClick={() => {
-              closeSignUpModal();
-              openLoginModal();
-            }}
-            onSignUpSuccess={() => {
-              closeSignUpModal();
-              openVerifyEmailModal();
-            }}
-          />
+          <SignUpForm onLoginClick={openLoginModal} 
+          onClose={closeSignUpModal}/>
         </Modal>
-
         <Modal
           isOpen={isResetPasswordModalOpen}
           onClose={closeResetPasswordModal}
         >
-          <ResetPasswordForm
-            onCreateNewPasswordClick={() => {
-              closeResetPasswordModal();
-              openCreateNewPasswordModal();
-            }}
-          />
+          <ResetPasswordForm />
         </Modal>
-
         <Modal
           isOpen={isCreateNewPasswordModalOpen}
           onClose={closeCreateNewPasswordModal}
         >
           <CreateNewPasswordForm />
         </Modal>
-
         <Modal isOpen={isVerifyEmailModalOpen} onClose={closeVerifyEmailModal}>
           <VerifyEmail />
         </Modal>
-
         <Modal isOpen={isHelpModalOpen} onClose={closeHelpModal}>
           <HelpCenter />
         </Modal>
+        <QuickViewModal
+          isOpen={isQuickViewModalOpen}
+          onClose={closeQuickViewModal}
+          product={selectedProduct}
+          onAddToCart={handleAddToCart}
+        />
       </div>
-      {/* ================== footer ================ */}
       <Footer />
-    </>
+    </div>
   );
 };
 

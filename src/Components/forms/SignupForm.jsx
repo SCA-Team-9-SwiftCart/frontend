@@ -1,8 +1,13 @@
-// SignUpForm.js
-import React from 'react';
-import { google } from '../../assets';
+import React from "react";
+import { google } from "../../assets";
 
-const SignUpForm = ({ onLoginClick }) => {
+const SignUpForm = ({ onLoginClick, onClose }) => {
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    onLoginClick();
+    onClose();
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4 text-center">SIGN UP</h2>
@@ -35,13 +40,13 @@ const SignUpForm = ({ onLoginClick }) => {
         Continue with Google
       </button>
       <div className="text-center mt-4">
-        Already have an Account?{" "}
-        <span
-          onClick={onLoginClick}
-          className="text-black font-bold cursor-pointer"
+        <p> Already have an Account?</p>
+        <button
+          onClick={handleLoginClick}
+          className="underline text-black font-semibold"
         >
           Log in
-        </span>
+        </button>
       </div>
     </div>
   );

@@ -1,7 +1,14 @@
 import React from "react";
 import { CgShoppingCart } from "react-icons/cg";
 
-function ProductCard({ imageSrc, title, productClass, newP, oldP }) {
+function ProductCard({
+  imageSrc,
+  title,
+  productClass,
+  newP,
+  oldP,
+  onAddToCartClick,
+}) {
   return (
     <div className="flex flex-col px-8 py-2 rounded-xl shadow-xl">
       <img src={imageSrc} className="h-[250px]" alt={title} />
@@ -10,7 +17,10 @@ function ProductCard({ imageSrc, title, productClass, newP, oldP }) {
         <h3 className="text-grey font-medium">{productClass}</h3>
         <p className="text-2xl font-semibold">{newP}</p>
         <p className="line-through text-grey">{oldP}</p>
-        <button className="bg-yellow py-3 text-xl flex justify-center items-center gap-4 w-full">
+        <button
+          className="bg-yellow py-3 text-xl flex justify-center items-center gap-4 w-full"
+          onClick={onAddToCartClick}
+        >
           <CgShoppingCart />
           <h4 className="font-semibold">Add to Cart</h4>
         </button>

@@ -1,7 +1,19 @@
 import React from "react";
 import { google } from "../../assets";
 
-const LoginForm = ({ onSignUpClick, onForgotPasswordClick }) => {
+const LoginForm = ({ onSignupClick, onForgotPasswordClick, onClose }) => {
+  const handleSignupClick = (e) => {
+    e.preventDefault();
+    onSignupClick();
+    onClose();
+  };
+
+  const handleForgotPasswordClick = (e) => {
+    e.preventDefault();
+    onForgotPasswordClick();
+    onClose();
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4 text-center">LOGIN</h2>
@@ -32,10 +44,7 @@ const LoginForm = ({ onSignUpClick, onForgotPasswordClick }) => {
           <a
             href="#"
             className="text-sm text-black font-semibold"
-            onClick={(e) => {
-              e.preventDefault();
-              onForgotPasswordClick();
-            }}
+            onClick={handleForgotPasswordClick}
           >
             Forgot your password?
           </a>
@@ -50,19 +59,13 @@ const LoginForm = ({ onSignUpClick, onForgotPasswordClick }) => {
           <img src={google} alt="" />
           Continue with Google
         </button>
-        <p className="mt-4">
-          Don't have an Account?{" "}
-          <a
-            href="#"
-            className="text-black font-bold"
-            onClick={(e) => {
-              e.preventDefault();
-              onSignUpClick();
-            }}
-          >
-            Sign up
-          </a>
-        </p>
+        <p className="mt-4">Don't have an Account?</p>
+        <button
+          onClick={handleSignupClick}
+          className="underline text-black font-semibold"
+        >
+          Sign up
+        </button>
       </div>
     </div>
   );
