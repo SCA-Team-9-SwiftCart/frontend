@@ -148,8 +148,8 @@ const healthProducts = [
   },
   {
     imageSrc: newproduct10,
-    title: "Milo Hot Chocolate Refill -",
-    productClass: "800g",
+    title: "NIVEA Perfect and Even Tone",
+    productClass: "Day/Night Cream for Women",
     newP: "N4,200",
     oldP: "N5,000",
     stock: 23,
@@ -182,8 +182,8 @@ const supermarketProducts = [
   },
   {
     imageSrc: newproduct14,
-    title: "NIVEA Perfect and Even Tone",
-    productClass: "Day/Night Cream for Women",
+    title: "Milo Hot Chocolate Refill -",
+    productClass: "800g",
     newP: "N4,200",
     oldP: "N5,000",
     stock: 130,

@@ -40,7 +40,10 @@ const CartModal = ({ isOpen, onClose, cartItems, onRemoveFromCart }) => {
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <p className="font-semibold">${calculateTotalPrice(item)}</p>
+                  <p className="text-lg font-semibold">
+                    <span className="pr-2">#</span>
+                    {calculateTotalPrice(item)}
+                  </p>
                   <button
                     onClick={() => onRemoveFromCart(item)}
                     className="text-red-500 hover:text-red-700"
@@ -52,14 +55,16 @@ const CartModal = ({ isOpen, onClose, cartItems, onRemoveFromCart }) => {
             ))}
             <div className="flex justify-end mt-4">
               <div className="border-t border-gray-300 w-full flex justify-between py-2">
-                <p className="font-semibold">Subtotal</p>
-                <p className="font-semibold">${calculateSubtotal()}</p>
+                <p className="font-bold text-lg">Total</p>
+                <p className="pr-6 text-xl font-bold">
+                  <span className="pr-2">#</span>
+                  {calculateSubtotal()}
+                </p>
               </div>
             </div>
             <button
-              className="bg-black text-white px-4 py-2 rounded mt-4"
+              className="bg-black text-white w-full py-4 rounded mt-6 font-semibold"
               onClick={() => {
-                // Handle checkout logic here
                 console.log("Proceed to Checkout clicked!");
               }}
             >
