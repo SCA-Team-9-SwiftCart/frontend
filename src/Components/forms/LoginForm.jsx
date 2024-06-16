@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { google } from "../../assets";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const LoginForm = ({ onSignupClick, onForgotPasswordClick, onClose }) => {
   const [email, setEmail] = useState("");
@@ -52,6 +53,7 @@ const LoginForm = ({ onSignupClick, onForgotPasswordClick, onClose }) => {
         }
       );
       console.log("Login successful", response.data);
+      toast.success("Proceed to Login");
       onClose();
     } catch (error) {
       console.error("Login error", error);
