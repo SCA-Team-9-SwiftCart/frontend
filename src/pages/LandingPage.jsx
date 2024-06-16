@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RiUserLine } from "react-icons/ri";
 import { LiaAngleDownSolid } from "react-icons/lia";
 import { MdHelpOutline } from "react-icons/md";
@@ -11,31 +11,7 @@ import SignUpForm from "../Components/forms/SignupForm";
 import ResetPasswordForm from "../Components/forms/ResetPasswordForm";
 import NewPasswordForm from "../Components/forms/NewPasswordForm";
 import HelpCenter from "../Components/HelpCenter";
-import {
-  MenShoes,
-  hero1,
-  logo,
-  newproduct1,
-  newproduct10,
-  newproduct11,
-  newproduct12,
-  newproduct13,
-  newproduct14,
-  newproduct15,
-  newproduct16,
-  newproduct2,
-  newproduct3,
-  newproduct4,
-  newproduct5,
-  newproduct6,
-  newproduct7,
-  newproduct8,
-  newproduct9,
-  product1,
-  product2,
-  product3,
-  product4,
-} from "../assets";
+import { MenShoes, hero1, logo } from "../assets";
 import {
   supermarketContent,
   appliancesContent,
@@ -50,212 +26,14 @@ import QuickViewModal from "../Components/modals/QuickViewModal";
 import SignupVerifyEmail from "../Components/forms/SignupVerifyEmail";
 import VerifyEmailForm from "../Components/forms/VerifyEmailForm";
 import ResetConfirmation from "../Components/forms/ResetConfirmation";
-
-const products = [
-  {
-    imageSrc: product1,
-    title: "Modern Ceiling Light Modern",
-    productClass: "Ceiling Fan",
-    newP: "N27,749",
-    oldP: "N40,196",
-    stock: 10,
-  },
-  {
-    imageSrc: product2,
-    title: "Adidas Nike Sneakers",
-    productClass: "Shoes",
-    newP: "N5,900",
-    oldP: "N9,999",
-    stock: 5, // add stock count
-  },
-  {
-    imageSrc: product3,
-    title: "Digital Wall Clock",
-    productClass: "Accessories",
-    newP: "N3,200",
-    oldP: "N5,300",
-    stock: 8, // add stock count
-  },
-  {
-    imageSrc: product4,
-    title: "Digital WristWatch",
-    productClass: "Accessories",
-    newP: "N10,999",
-    oldP: "N18,822",
-    stock: 12, // add stock count
-  },
-];
-
-const newProducts = [
-  {
-    imageSrc: newproduct1,
-    title: "Casual Shoulder Sports Sling ",
-    productClass: "Sport bag",
-    newP: "N2,699",
-    oldP: "N40,196",
-    stock: 17,
-  },
-  {
-    imageSrc: newproduct2,
-    title: "Titanium Steel Cuban Hip Hop",
-    productClass: "Necklace",
-    newP: "N1,780",
-    oldP: "N9,999",
-    stock: 10,
-  },
-  {
-    imageSrc: newproduct3,
-    title: "Cidea Android 12 Adults 8 Inch ",
-    productClass: "Tablet 6GB Ram 256GB Rom...",
-    newP: "N68,160",
-    oldP: "N5,300",
-    stock: 20,
-  },
-  {
-    imageSrc: newproduct4,
-    title: "Shoe Rack Foldable Assembly",
-    productClass: "Stainless Steel Silver 6 Layers",
-    newP: "N11,099",
-    oldP: "N18,822",
-    stock: 1,
-  },
-  {
-    imageSrc: newproduct5,
-    title: "Mens Beach Shoes Outdoor ",
-    productClass: "EVA hole Sandals Black",
-    newP: "N12,500",
-    oldP: "N18,822",
-    stock: 20,
-  },
-  {
-    imageSrc: newproduct6,
-    title: "Pure Black Long-Lasting ",
-    productClass: "Perfume",
-    newP: "N4,200",
-    oldP: "N5,000",
-    stock: 20,
-  },
-  {
-    imageSrc: newproduct7,
-    title: "4 in 1 Fashion Backpacks with ",
-    productClass: "Extra Purse",
-    newP: "N11,099",
-    oldP: "N18,822",
-    stock: 10,
-  },
-  {
-    imageSrc: newproduct8,
-    title: "Qasa Solar Strong Power ",
-    productClass: "Portable SPP-220 Easily...",
-    newP: "N205,099",
-    oldP: "N300,000",
-    stock: 5,
-  },
-];
-
-const electronicsProducts = [
-  {
-    imageSrc: newproduct5,
-    title: "Mens Beach Shoes Outdoor ",
-    productClass: "EVA hole Sandals Black",
-    newP: "N12,500",
-    oldP: "N18,822",
-    stock: 13,
-  },
-  {
-    imageSrc: newproduct6,
-    title: "Pure Black Long-Lasting ",
-    productClass: "Perfume",
-    newP: "N4,200",
-    oldP: "N5,000",
-    stock: 40,
-  },
-  {
-    imageSrc: newproduct7,
-    title: "4 in 1 Fashion Backpacks with ",
-    productClass: "Extra Purse",
-    newP: "N11,099",
-    oldP: "N18,822",
-    stock: 14,
-  },
-  {
-    imageSrc: newproduct8,
-    title: "Qasa Solar Strong Power ",
-    productClass: "Portable SPP-220 Easily...",
-    newP: "N205,099",
-    oldP: "N300,000",
-    stock: 30,
-  },
-];
-
-const healthProducts = [
-  {
-    imageSrc: newproduct9,
-    title: "Bob'S Red Mill Whole Wheat",
-    productClass: "Pearl Couscous, 16 Oz 454g",
-    newP: "N7,100",
-    oldP: "N8,000",
-    stock: 13,
-  },
-  {
-    imageSrc: newproduct10,
-    title: "Milo Hot Chocolate Refill -",
-    productClass: "800g",
-    newP: "N4,200",
-    oldP: "N5,000",
-    stock: 23,
-  },
-  {
-    imageSrc: newproduct11,
-    title: "Flat Tummy Tea With Moringa,",
-    productClass: "Slim Tea For Weightloss",
-    newP: "N11,099",
-    oldP: "N18,822",
-    stock: 3,
-  },
-  {
-    imageSrc: newproduct12,
-    title: "Nittol Nittol Antibacterial",
-    productClass: "Detergent 160g",
-    newP: "N6,675",
-    oldP: "N7,500",
-    stock: 200,
-  },
-];
-
-const supermarketProducts = [
-  {
-    imageSrc: newproduct13,
-    title: "Long Rich Brightening Hand",
-    productClass: "Cream",
-    newP: "N7,100",
-    stock: 100,
-  },
-  {
-    imageSrc: newproduct14,
-    title: "NIVEA Perfect and Even Tone",
-    productClass: "Day/Night Cream for Women",
-    newP: "N4,200",
-    oldP: "N5,000",
-    stock: 130,
-  },
-  {
-    imageSrc: newproduct15,
-    title: "4 in 1 Fashion Backpacks with ",
-    productClass: "Extra Purse",
-    newP: "N11,099",
-    oldP: "N18,822",
-    stock: 200,
-  },
-  {
-    imageSrc: newproduct16,
-    title: "NIVEA Lip Care Shine bundle - ",
-    productClass: "Blackberry, Strawberry,.",
-    newP: "N6,675",
-    oldP: "N7,500",
-    stock: 210,
-  },
-];
+import CartModal from "../Components/modals/CartModal";
+import {
+  products,
+  newProducts,
+  electronicsProducts,
+  healthProducts,
+  supermarketProducts,
+} from "../assets/data/data";
 
 const LandingPage = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -264,14 +42,16 @@ const LandingPage = () => {
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] =
     useState(false);
-  const [isResetSuccessModalOpen, setIsResetSuccessModalOpen] =
-    useState(false);
+  const [isResetSuccessModalOpen, setIsResetSuccessModalOpen] = useState(false);
   const [isCreateNewPasswordModalOpen, setIsCreateNewPasswordModalOpen] =
     useState(false);
   const [isVerifyEmailModalOpen, setIsVerifyEmailModalOpen] = useState(false);
   const [isVerifySuccessModalOpen, setIsVerifySuccessModalOpen] =
     useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [isCartModalOpen, setCartModalOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [quickViewItem, setQuickViewItem] = useState(null);
   const [isQuickViewModalOpen, setIsQuickViewModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -362,18 +142,43 @@ const LandingPage = () => {
     setIsVerifyEmailModalOpen(true);
   };
 
-  const handleAddToCart = (product, quantity) => {
-    console.log(`Adding ${quantity} of ${product.title} to cart`);
-    // if (!isUserSignedIn) {
-    //   openLoginModal();
-    // } else {
-    // }
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cartItems");
+    if (savedCart) {
+      setCartItems(JSON.parse(savedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const handleAddToCart = (product) => {
+    const existingProduct = cartItems.find(
+      (item) => item.title === product.title
+    );
+
+    if (existingProduct) {
+      const updatedCart = cartItems.map((item) =>
+        item.title === product.title
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      setCartItems(updatedCart);
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
+  };
+
+  const handleRemoveFromCart = (productToRemove) => {
+    const updatedCart = cartItems.filter((item) => item !== productToRemove);
+    setCartItems(updatedCart);
   };
 
   return (
     <div className="w-full">
       <div className="w-full bg-white text-black pt-10 px-[5%] flex flex-col">
-        <nav className="flex w-full items-center justify-between gap-8 h-[60px]">
+        <nav className="flex lgss:flex-row flex-col w-full items-center justify-between gap-8 h-[60px] mb-6">
           <div className="w-full lgss:w-[50%] flex justify-between gap-7">
             <Link to={"/"}>
               <img src={logo} alt="" />
@@ -384,7 +189,7 @@ const LandingPage = () => {
               placeholder="Search products..."
             />
           </div>
-          <div className="lgss:w-[30%] hidden lgss:flex gap-10 justify-center items-center">
+          <div className="lgss:w-[30%] w-full flex gap-10 justify-center items-center">
             <NewNavLinks
               link={"Account"}
               icon1={RiUserLine}
@@ -401,6 +206,7 @@ const LandingPage = () => {
               link={"Cart"}
               icon1={CgShoppingCart}
               icon2={LiaAngleDownSolid}
+              onClick={() => setCartModalOpen(true)}
             />
           </div>
         </nav>
@@ -473,6 +279,8 @@ const LandingPage = () => {
                 oldP={product.oldP}
                 stock={product.stock}
                 onAddToCartClick={() => openQuickViewModal(product)}
+                onAddToCart={() => handleAddToCart(product)}
+                onQuickView={() => setQuickViewItem(product)}
               />
             ))}
           </div>
@@ -516,6 +324,8 @@ const LandingPage = () => {
               oldP={product.oldP}
               stock={product.stock}
               onAddToCartClick={() => openQuickViewModal(product)}
+              onAddToCart={() => handleAddToCart(product)}
+              onQuickView={() => setQuickViewItem(product)}
             />
           ))}
         </div>
@@ -529,8 +339,7 @@ const LandingPage = () => {
         )}
 
         <div className="my-4">
-
-        {/* // =========health ===== */}
+          {/* // =========health ===== */}
           <GreenHeader h2={"Health & Beauty"} />
           <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
             {healthProducts.map((product, index) => (
@@ -602,22 +411,28 @@ const LandingPage = () => {
           isOpen={isResetPasswordModalOpen}
           onClose={closeResetPasswordModal}
         >
-          <ResetPasswordForm 
-          onCreateNewPasswordClick={openCreateNewPasswordModal} onClose={closeResetPasswordModal}/>
+          <ResetPasswordForm
+            onCreateNewPasswordClick={openCreateNewPasswordModal}
+            onClose={closeResetPasswordModal}
+          />
         </Modal>
         <Modal
           isOpen={isCreateNewPasswordModalOpen}
           onClose={closeCreateNewPasswordModal}
         >
-          <NewPasswordForm onNewPwCreated={openResetPasswordSuccessModal}
-          onClose={closeCreateNewPasswordModal}/>
+          <NewPasswordForm
+            onNewPwCreated={openResetPasswordSuccessModal}
+            onClose={closeCreateNewPasswordModal}
+          />
         </Modal>
         <Modal
           isOpen={isResetSuccessModalOpen}
           onClose={closeResetPasswordSuccessModal}
         >
-          <ResetConfirmation onPwResetSuccess={openLoginModal}
-          onClose={closeResetPasswordSuccessModal}/>
+          <ResetConfirmation
+            onPwResetSuccess={openLoginModal}
+            onClose={closeResetPasswordSuccessModal}
+          />
         </Modal>
         <Modal isOpen={isVerifyEmailModalOpen} onClose={closeVerifyEmailModal}>
           <VerifyEmailForm
@@ -637,6 +452,13 @@ const LandingPage = () => {
         <Modal isOpen={isHelpModalOpen} onClose={closeHelpModal}>
           <HelpCenter />
         </Modal>
+        {/* Cart Modal */}
+        <CartModal
+          isOpen={isCartModalOpen}
+          onClose={() => setCartModalOpen(false)}
+          cartItems={cartItems}
+          onRemoveFromCart={handleRemoveFromCart}
+        />
         <QuickViewModal
           isOpen={isQuickViewModalOpen}
           onClose={closeQuickViewModal}

@@ -11,6 +11,11 @@ const calculateDiscount = (newP, oldP) => {
   return discount.toFixed(0);
 };
 
+const calculateTotalPrice = (price, quantity) => {
+  const numericPrice = parseFloat(price.replace(/[^0-9.-]+/g, ""));
+  return numericPrice * quantity;
+};
+
 const QuickViewModal = ({ isOpen, onClose, product, onAddToCart }) => {
   const [quantity, setQuantity] = useState(1);
 
@@ -23,10 +28,9 @@ const QuickViewModal = ({ isOpen, onClose, product, onAddToCart }) => {
   const handleAddToCart = () => {
     if (product) {
       onAddToCart(product, quantity);
-      // Show toast notification
       toast.success(`${product.title} added to cart`, {
         position: "top-right",
-        autoClose: 3000, // Close the toast after 3 seconds
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -40,6 +44,8 @@ const QuickViewModal = ({ isOpen, onClose, product, onAddToCart }) => {
   if (!product) {
     return null;
   }
+
+  const totalPrice = calculateTotalPrice(product.newP, quantity).toFixed(2);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -74,7 +80,8 @@ const QuickViewModal = ({ isOpen, onClose, product, onAddToCart }) => {
               +
             </button>
           </div>
-          <p className="text-xl font-bold mt-4">{product.newP}</p>
+          <p className="text-xl font-bold mt-4 hidden">Price: {product.newP}</p>
+          <p className="text-xl font-bold mt-4">Price: N{totalPrice}</p>
           {product.oldP && (
             <div className="flex gap-4 items-center">
               <span className="line-through text-grey">{product.oldP}</span>
