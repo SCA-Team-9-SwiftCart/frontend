@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { CgShoppingCart } from "react-icons/cg";
 import Modal from "../Modals";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// Define the calculateDiscount function here
 const calculateDiscount = (newP, oldP) => {
   const newPrice = parseFloat(newP.replace(/[^0-9.-]+/g, ""));
   const oldPrice = parseFloat(oldP.replace(/[^0-9.-]+/g, ""));
@@ -22,6 +23,16 @@ const QuickViewModal = ({ isOpen, onClose, product, onAddToCart }) => {
   const handleAddToCart = () => {
     if (product) {
       onAddToCart(product, quantity);
+      // Show toast notification
+      toast.success(`${product.title} added to cart`, {
+        position: "top-right",
+        autoClose: 3000, // Close the toast after 3 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
     onClose();
   };

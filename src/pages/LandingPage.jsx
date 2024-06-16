@@ -364,10 +364,10 @@ const LandingPage = () => {
 
   const handleAddToCart = (product, quantity) => {
     console.log(`Adding ${quantity} of ${product.title} to cart`);
-    if (!isUserSignedIn) {
-      openLoginModal();
-    } else {
-    }
+    // if (!isUserSignedIn) {
+    //   openLoginModal();
+    // } else {
+    // }
   };
 
   return (
