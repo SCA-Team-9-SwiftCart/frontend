@@ -1,20 +1,23 @@
-// ResetPasswordForm.js
 import React from "react";
 
-const ResetPasswordForm = ({ onCreateNewPasswordClick }) => {
+const ResetPasswordForm = ({ onCreateNewPasswordClick, onClose }) => {
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      onCreateNewPasswordClick();
+      onClose();
+    };
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-4 text-center">
         Reset Password
       </h2>
-      <form className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <input type="email" className="w-full p-2 border" required placeholder="Email address *"/>
         </div>
         <button
           type="submit"
           className="w-full py-2 bg-black text-white"
-          onClick={onCreateNewPasswordClick}
         >
           Submit
         </button>

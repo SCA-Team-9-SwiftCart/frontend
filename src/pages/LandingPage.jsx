@@ -9,7 +9,7 @@ import Modal from "../Components/Modals";
 import LoginForm from "../Components/forms/LoginForm";
 import SignUpForm from "../Components/forms/SignupForm";
 import ResetPasswordForm from "../Components/forms/ResetPasswordForm";
-import CreateNewPasswordForm from "../Components/forms/NewPasswordForm";
+import NewPasswordForm from "../Components/forms/NewPasswordForm";
 import HelpCenter from "../Components/HelpCenter";
 import {
   MenShoes,
@@ -49,6 +49,7 @@ import Footer from "../Components/Footer";
 import QuickViewModal from "../Components/modals/QuickViewModal";
 import SignupVerifyEmail from "../Components/forms/SignupVerifyEmail";
 import VerifyEmailForm from "../Components/forms/VerifyEmailForm";
+import ResetConfirmation from "../Components/forms/ResetConfirmation";
 
 const products = [
   {
@@ -151,6 +152,7 @@ const newProducts = [
     stock: 5,
   },
 ];
+
 const electronicsProducts = [
   {
     imageSrc: newproduct5,
@@ -185,6 +187,7 @@ const electronicsProducts = [
     stock: 30,
   },
 ];
+
 const healthProducts = [
   {
     imageSrc: newproduct9,
@@ -219,6 +222,7 @@ const healthProducts = [
     stock: 200,
   },
 ];
+
 const supermarketProducts = [
   {
     imageSrc: newproduct13,
@@ -259,6 +263,8 @@ const LandingPage = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] =
+    useState(false);
+  const [isResetSuccessModalOpen, setIsResetSuccessModalOpen] =
     useState(false);
   const [isCreateNewPasswordModalOpen, setIsCreateNewPasswordModalOpen] =
     useState(false);
@@ -304,6 +310,17 @@ const LandingPage = () => {
 
   const closeCreateNewPasswordModal = () => {
     setIsCreateNewPasswordModalOpen(false);
+  };
+
+  const openCreateNewPasswordModal = () => {
+    setIsCreateNewPasswordModalOpen(true);
+  };
+  const closeResetPasswordSuccessModal = () => {
+    setIsResetSuccessModalOpen(false);
+  };
+
+  const openResetPasswordSuccessModal = () => {
+    setIsResetSuccessModalOpen(true);
   };
 
   const openVerifyEmailModal = () => {
@@ -585,13 +602,22 @@ const LandingPage = () => {
           isOpen={isResetPasswordModalOpen}
           onClose={closeResetPasswordModal}
         >
-          <ResetPasswordForm />
+          <ResetPasswordForm 
+          onCreateNewPasswordClick={openCreateNewPasswordModal} onClose={closeResetPasswordModal}/>
         </Modal>
         <Modal
           isOpen={isCreateNewPasswordModalOpen}
           onClose={closeCreateNewPasswordModal}
         >
-          <CreateNewPasswordForm />
+          <NewPasswordForm onNewPwCreated={openResetPasswordSuccessModal}
+          onClose={closeCreateNewPasswordModal}/>
+        </Modal>
+        <Modal
+          isOpen={isResetSuccessModalOpen}
+          onClose={closeResetPasswordSuccessModal}
+        >
+          <ResetConfirmation onPwResetSuccess={openLoginModal}
+          onClose={closeResetPasswordSuccessModal}/>
         </Modal>
         <Modal isOpen={isVerifyEmailModalOpen} onClose={closeVerifyEmailModal}>
           <VerifyEmailForm
