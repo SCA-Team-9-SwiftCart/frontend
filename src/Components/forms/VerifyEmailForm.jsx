@@ -1,20 +1,39 @@
-// VerifyEmail.js
 import React from "react";
 
-const VerifyEmailForm = () => {
+const VerifyEmailForm = ({ onClose, onSuccessfulVerification }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSuccessfulVerification();
+    onClose();
+  };
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4 text-center">
+    <form onSubmit={handleSubmit}>
+      <h2 className="text-2xl font-bold uppercase mb-4 text-center">
         Verify Your Email
       </h2>
-      <p className="text-center mb-4">
+      <p className="text-center ">
         A verification email has been sent to your email address. Please check
-        your inbox and click on the verification link.
+        your inbox for your One-Time Password.
       </p>
-      <button className="w-full py-2 bg-black text-white">
-        Resend Verification Email
-      </button>
-    </div>
+
+      <div className="flex flex-col gap-2 pt-5">
+        <input
+          type="text"
+          className="w-full p-2 border"
+          required
+          placeholder="Enter OTP *"
+        />
+        <button className="w-full bg-none text-grey italic text-left">
+          Resend code
+        </button>
+        <button
+          type="submit"
+          className="w-full font-semibold py-4 mt-3 rounded-[4px] text-lg bg-black text-white"
+        >
+          Check OTP
+        </button>
+      </div>
+    </form>
   );
 };
 

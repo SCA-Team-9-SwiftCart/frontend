@@ -48,6 +48,8 @@ import ProductCard from "../Components/Cards/ProductCard";
 import GreenHeader from "../Components/Cards/GreenHeader";
 import Footer from "../Components/Footer";
 import QuickViewModal from "../Components/modals/QuickViewModal";
+import SignupVerifyEmail from "../Components/forms/SignupVerifyEmail";
+import VerifyEmailForm from "../Components/forms/VerifyEmailForm";
 
 const products = [
   {
@@ -236,6 +238,8 @@ const LandingPage = () => {
   const [isCreateNewPasswordModalOpen, setIsCreateNewPasswordModalOpen] =
     useState(false);
   const [isVerifyEmailModalOpen, setIsVerifyEmailModalOpen] = useState(false);
+  const [isVerifySuccessModalOpen, setIsVerifySuccessModalOpen] =
+    useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [isQuickViewModalOpen, setIsQuickViewModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -273,10 +277,6 @@ const LandingPage = () => {
     setIsResetPasswordModalOpen(false);
   };
 
-  const openCreateNewPasswordModal = () => {
-    setIsCreateNewPasswordModalOpen(true);
-  };
-
   const closeCreateNewPasswordModal = () => {
     setIsCreateNewPasswordModalOpen(false);
   };
@@ -287,6 +287,14 @@ const LandingPage = () => {
 
   const closeVerifyEmailModal = () => {
     setIsVerifyEmailModalOpen(false);
+  };
+
+  const openVerifySuccessModal = () => {
+    setIsVerifySuccessModalOpen(true);
+  };
+
+  const closeVerifySuccessModal = () => {
+    setIsVerifySuccessModalOpen(false);
   };
 
   const openHelpModal = () => {
@@ -305,6 +313,11 @@ const LandingPage = () => {
   const closeQuickViewModal = () => {
     setIsQuickViewModalOpen(false);
     setSelectedProduct(null);
+  };
+
+  const handleSignupSuccess = () => {
+    setIsSignUpModalOpen(false);
+    setIsVerifyEmailModalOpen(true);
   };
 
   const handleAddToCart = (product, quantity) => {
@@ -527,8 +540,11 @@ const LandingPage = () => {
           />
         </Modal>
         <Modal isOpen={isSignUpModalOpen} onClose={closeSignUpModal}>
-          <SignUpForm onLoginClick={openLoginModal} 
-          onClose={closeSignUpModal}/>
+          <SignUpForm
+            onLoginClick={openLoginModal}
+            onSuccessfulSignup={openVerifyEmailModal}
+            onClose={closeSignUpModal}
+          />
         </Modal>
         <Modal
           isOpen={isResetPasswordModalOpen}
@@ -543,7 +559,19 @@ const LandingPage = () => {
           <CreateNewPasswordForm />
         </Modal>
         <Modal isOpen={isVerifyEmailModalOpen} onClose={closeVerifyEmailModal}>
-          <VerifyEmail />
+          <VerifyEmailForm
+            onSuccessfulVerification={openVerifySuccessModal}
+            onClose={closeVerifyEmailModal}
+          />
+        </Modal>
+        <Modal
+          isOpen={isVerifySuccessModalOpen}
+          onClose={closeVerifySuccessModal}
+        >
+          <SignupVerifyEmail
+            onClose={closeVerifySuccessModal}
+            onOTPChecked={openLoginModal}
+          />
         </Modal>
         <Modal isOpen={isHelpModalOpen} onClose={closeHelpModal}>
           <HelpCenter />
