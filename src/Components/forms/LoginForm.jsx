@@ -53,7 +53,7 @@ const LoginForm = ({ onSignupClick, onForgotPasswordClick, onClose }) => {
         }
       );
       console.log("Login successful", response.data);
-      toast.success("Proceed to Login");
+      toast.success("Proceed to place an order");
       onClose();
     } catch (error) {
       console.error("Login error", error);
