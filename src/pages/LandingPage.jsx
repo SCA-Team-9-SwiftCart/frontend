@@ -10,7 +10,6 @@ import LoginForm from "../Components/forms/LoginForm";
 import SignUpForm from "../Components/forms/SignupForm";
 import ResetPasswordForm from "../Components/forms/ResetPasswordForm";
 import CreateNewPasswordForm from "../Components/forms/NewPasswordForm";
-import VerifyEmail from "../Components/forms/VerifyEmailForm";
 import HelpCenter from "../Components/HelpCenter";
 import {
   MenShoes,
@@ -58,6 +57,7 @@ const products = [
     productClass: "Ceiling Fan",
     newP: "N27,749",
     oldP: "N40,196",
+    stock: 10,
   },
   {
     imageSrc: product2,
@@ -65,6 +65,7 @@ const products = [
     productClass: "Shoes",
     newP: "N5,900",
     oldP: "N9,999",
+    stock: 5, // add stock count
   },
   {
     imageSrc: product3,
@@ -72,6 +73,7 @@ const products = [
     productClass: "Accessories",
     newP: "N3,200",
     oldP: "N5,300",
+    stock: 8, // add stock count
   },
   {
     imageSrc: product4,
@@ -79,8 +81,10 @@ const products = [
     productClass: "Accessories",
     newP: "N10,999",
     oldP: "N18,822",
+    stock: 12, // add stock count
   },
 ];
+
 const newProducts = [
   {
     imageSrc: newproduct1,
@@ -88,6 +92,7 @@ const newProducts = [
     productClass: "Sport bag",
     newP: "N2,699",
     oldP: "N40,196",
+    stock: 17,
   },
   {
     imageSrc: newproduct2,
@@ -95,6 +100,7 @@ const newProducts = [
     productClass: "Necklace",
     newP: "N1,780",
     oldP: "N9,999",
+    stock: 10,
   },
   {
     imageSrc: newproduct3,
@@ -102,6 +108,7 @@ const newProducts = [
     productClass: "Tablet 6GB Ram 256GB Rom...",
     newP: "N68,160",
     oldP: "N5,300",
+    stock: 20,
   },
   {
     imageSrc: newproduct4,
@@ -109,6 +116,7 @@ const newProducts = [
     productClass: "Stainless Steel Silver 6 Layers",
     newP: "N11,099",
     oldP: "N18,822",
+    stock: 1,
   },
   {
     imageSrc: newproduct5,
@@ -116,6 +124,7 @@ const newProducts = [
     productClass: "EVA hole Sandals Black",
     newP: "N12,500",
     oldP: "N18,822",
+    stock: 20,
   },
   {
     imageSrc: newproduct6,
@@ -123,6 +132,7 @@ const newProducts = [
     productClass: "Perfume",
     newP: "N4,200",
     oldP: "N5,000",
+    stock: 20,
   },
   {
     imageSrc: newproduct7,
@@ -130,6 +140,7 @@ const newProducts = [
     productClass: "Extra Purse",
     newP: "N11,099",
     oldP: "N18,822",
+    stock: 10,
   },
   {
     imageSrc: newproduct8,
@@ -137,6 +148,7 @@ const newProducts = [
     productClass: "Portable SPP-220 Easily...",
     newP: "N205,099",
     oldP: "N300,000",
+    stock: 5,
   },
 ];
 const electronicsProducts = [
@@ -146,6 +158,7 @@ const electronicsProducts = [
     productClass: "EVA hole Sandals Black",
     newP: "N12,500",
     oldP: "N18,822",
+    stock: 13,
   },
   {
     imageSrc: newproduct6,
@@ -153,6 +166,7 @@ const electronicsProducts = [
     productClass: "Perfume",
     newP: "N4,200",
     oldP: "N5,000",
+    stock: 40,
   },
   {
     imageSrc: newproduct7,
@@ -160,6 +174,7 @@ const electronicsProducts = [
     productClass: "Extra Purse",
     newP: "N11,099",
     oldP: "N18,822",
+    stock: 14,
   },
   {
     imageSrc: newproduct8,
@@ -167,6 +182,7 @@ const electronicsProducts = [
     productClass: "Portable SPP-220 Easily...",
     newP: "N205,099",
     oldP: "N300,000",
+    stock: 30,
   },
 ];
 const healthProducts = [
@@ -175,6 +191,8 @@ const healthProducts = [
     title: "Bob'S Red Mill Whole Wheat",
     productClass: "Pearl Couscous, 16 Oz 454g",
     newP: "N7,100",
+    oldP: "N8,000",
+    stock: 13,
   },
   {
     imageSrc: newproduct10,
@@ -182,6 +200,7 @@ const healthProducts = [
     productClass: "800g",
     newP: "N4,200",
     oldP: "N5,000",
+    stock: 23,
   },
   {
     imageSrc: newproduct11,
@@ -189,6 +208,7 @@ const healthProducts = [
     productClass: "Slim Tea For Weightloss",
     newP: "N11,099",
     oldP: "N18,822",
+    stock: 3,
   },
   {
     imageSrc: newproduct12,
@@ -196,6 +216,7 @@ const healthProducts = [
     productClass: "Detergent 160g",
     newP: "N6,675",
     oldP: "N7,500",
+    stock: 200,
   },
 ];
 const supermarketProducts = [
@@ -204,6 +225,7 @@ const supermarketProducts = [
     title: "Long Rich Brightening Hand",
     productClass: "Cream",
     newP: "N7,100",
+    stock: 100,
   },
   {
     imageSrc: newproduct14,
@@ -211,6 +233,7 @@ const supermarketProducts = [
     productClass: "Day/Night Cream for Women",
     newP: "N4,200",
     oldP: "N5,000",
+    stock: 130,
   },
   {
     imageSrc: newproduct15,
@@ -218,6 +241,7 @@ const supermarketProducts = [
     productClass: "Extra Purse",
     newP: "N11,099",
     oldP: "N18,822",
+    stock: 200,
   },
   {
     imageSrc: newproduct16,
@@ -225,6 +249,7 @@ const supermarketProducts = [
     productClass: "Blackberry, Strawberry,.",
     newP: "N6,675",
     oldP: "N7,500",
+    stock: 210,
   },
 ];
 
@@ -429,6 +454,7 @@ const LandingPage = () => {
                 productClass={product.productClass}
                 newP={product.newP}
                 oldP={product.oldP}
+                stock={product.stock}
                 onAddToCartClick={() => openQuickViewModal(product)}
               />
             ))}
@@ -463,7 +489,7 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="grid gap-8 py-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((product, index) => (
+          {newProducts.map((product, index) => (
             <ProductCard
               key={index}
               imageSrc={product.imageSrc}
@@ -471,6 +497,7 @@ const LandingPage = () => {
               productClass={product.productClass}
               newP={product.newP}
               oldP={product.oldP}
+              stock={product.stock}
               onAddToCartClick={() => openQuickViewModal(product)}
             />
           ))}
@@ -484,8 +511,9 @@ const LandingPage = () => {
           />
         )}
 
-        {/* // =========health ===== */}
         <div className="my-4">
+
+        {/* // =========health ===== */}
           <GreenHeader h2={"Health & Beauty"} />
           <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
             {healthProducts.map((product, index) => (
@@ -494,12 +522,15 @@ const LandingPage = () => {
                 imageSrc={product.imageSrc}
                 title={product.title}
                 productClass={product.productClass}
+                stock={product.stock}
                 newP={product.newP}
                 oldP={product.oldP}
                 onAddToCartClick={() => openQuickViewModal(product)}
               />
             ))}
           </div>
+
+          {/* // ========= supermarket ===== */}
           <GreenHeader h2={"Supermarket"} />
           <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
             {supermarketProducts.map((product, index) => (
@@ -508,12 +539,15 @@ const LandingPage = () => {
                 imageSrc={product.imageSrc}
                 title={product.title}
                 productClass={product.productClass}
+                stock={product.stock}
                 newP={product.newP}
                 oldP={product.oldP}
                 onAddToCartClick={() => openQuickViewModal(product)}
               />
             ))}
           </div>
+
+          {/* // ========= electronics ===== */}
           <GreenHeader h2={"Electronics"} />
           <div className="grid lgss:grid-cols-4 gap-7 w-full mb-14">
             {electronicsProducts.map((product, index) => (
@@ -524,6 +558,7 @@ const LandingPage = () => {
                 productClass={product.productClass}
                 newP={product.newP}
                 oldP={product.oldP}
+                stock={product.stock}
                 onAddToCartClick={() => openQuickViewModal(product)}
               />
             ))}

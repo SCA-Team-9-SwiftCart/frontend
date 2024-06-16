@@ -25,6 +25,7 @@ import newproduct16 from "../assets/images/newproduct16.png";
 import footer1 from "../assets/images/footer1.png";
 import footer2 from "../assets/images/footer2.png";
 import footer3 from "../assets/images/footer3.png";
+import star from "../assets/images/star.svg";
 
 export {
   logo,
@@ -54,4 +55,5 @@ export {
   footer1,
   footer2,
   footer3,
+  star,
 };
