@@ -45,17 +45,15 @@ const LoginForm = ({ onSignupClick, onForgotPasswordClick, onClose }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://swiftcard-api.onrender.com/api/login",
+        "https://backend-g711.onrender.com/api/login",
         {
           email,
           password,
         }
       );
-      // Handle success (e.g., redirect or show success message)
       console.log("Login successful", response.data);
-      onClose(); // Close modal on successful login
+      onClose();
     } catch (error) {
-      // Handle error (e.g., display error message)
       console.error("Login error", error);
       if (error.response && error.response.data) {
         setErrors({ form: error.response.data.message });
@@ -79,7 +77,7 @@ const LoginForm = ({ onSignupClick, onForgotPasswordClick, onClose }) => {
       {errors.form && (
         <div className="text-red-500 text-center mb-4">{errors.form}</div>
       )}
-      <form className="space-y-4">
+      <form onSubmit={handleLoginClick} className="space-y-4">
         <div>
           <label className="block text-sm font-medium mb-1">
             Email address

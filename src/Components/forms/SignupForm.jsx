@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
+
 
 const SignupForm = ({ onLoginClick, onClose, onSuccessfulSignup }) => {
   const [email, setEmail] = useState("");
@@ -51,15 +53,19 @@ const SignupForm = ({ onLoginClick, onClose, onSuccessfulSignup }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://swiftcard-api.onrender.com/api/signup",
+        "https://backend-g711.onrender.com/api/signup",
         {
           email,
           password,
         }
       );
       console.log("Signup successful", response.data);
+      toast.success("Signup successful!");
+      toast.success("Proceed to Login");
       onClose();
+      onLoginClick();
     } catch (error) {
+      toast.error("Signup error. Please try again.");
       console.error("Signup error", error);
       if (error.response && error.response.data) {
         setErrors({ form: error.response.data.message });
@@ -83,7 +89,7 @@ const SignupForm = ({ onLoginClick, onClose, onSuccessfulSignup }) => {
       {errors.form && (
         <div className="text-red-500 text-center mb-4">{errors.form}</div>
       )}
-      <form className="space-y-4" onSubmit={handleSignupBtnClick}>
+      <form className="space-y-4" onSubmit={handleSignupClick}>
         <div>
           <label className="block text-sm font-medium mb-1">
             Email address
