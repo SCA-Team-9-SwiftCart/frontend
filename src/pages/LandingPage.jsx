@@ -36,6 +36,7 @@ import {
 } from "../assets/data/data";
 
 const LandingPage = () => {
+  const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [dropdownContent, setDropdownContent] = useState([]);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -55,6 +56,23 @@ const LandingPage = () => {
   const [isQuickViewModalOpen, setIsQuickViewModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      try {
+        setUser(JSON.parse(savedUser));
+      } catch (error) {
+        console.error("Error parsing user data from localStorage:", error);
+        localStorage.removeItem("user");
+      }
+    }
+  }, []);
+
+  const getUserInitials = (email) => {
+    if (!email) return "";
+    const initials = email.split("@")[0].match(/\b\w/g) || [];
+    return ((initials.shift() || "") + (initials.pop() || "")).toUpperCase();
+  };
   const handleMouseEnter = (content) => {
     setDropdownContent(content);
     setShowDropdown(true);
@@ -190,12 +208,18 @@ const LandingPage = () => {
             />
           </div>
           <div className="lgss:w-[30%] w-full flex gap-10 justify-center items-center">
-            <NewNavLinks
-              link={"Account"}
-              icon1={RiUserLine}
-              icon2={LiaAngleDownSolid}
-              onClick={openLoginModal}
-            />
+            {user ? (
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-300 text-white font-bold">
+                {getUserInitials(user.email)}
+              </div>
+            ) : (
+              <NewNavLinks
+                link={"Account"}
+                icon1={RiUserLine}
+                icon2={LiaAngleDownSolid}
+                onClick={openLoginModal}
+              />
+            )}
             <NewNavLinks
               link={"Help"}
               icon1={MdHelpOutline}
@@ -235,7 +259,7 @@ const LandingPage = () => {
           {showDropdown && <DropdownContent content={dropdownContent} />}
         </div>
         {/* ================ Hero Section =============== */}
-        <div className="relative w-full mt-6">
+        <div className="relative w-full mt-12">
           <img src={hero1} className="w-full" alt="hero-background" />
           <div className="absolute inset-0 bg-black opacity-60"></div>
           <div className="absolute inset-0 flex flex-col items-start px-[5%] justify-center text-white">

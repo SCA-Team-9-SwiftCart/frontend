@@ -1,4 +1,3 @@
-// navContent.js
 export const supermarketContent = [
   {
     title: "FOOD CUPBOARD",
