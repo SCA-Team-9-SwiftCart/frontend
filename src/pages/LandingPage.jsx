@@ -34,6 +34,7 @@ import {
   healthProducts,
   supermarketProducts,
 } from "../assets/data/data";
+import VerifyCodePwReset from "../Components/forms/VerifyCodePwReset";
 
 const LandingPage = () => {
   const [user, setUser] = useState(null);
@@ -51,10 +52,13 @@ const LandingPage = () => {
     useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [isCartModalOpen, setCartModalOpen] = useState(false);
+  const [isResetVerifyCodeModalOpen, setResetVerifyCodeModalOpen] =
+    useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [quickViewItem, setQuickViewItem] = useState(null);
   const [isQuickViewModalOpen, setIsQuickViewModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
@@ -115,6 +119,13 @@ const LandingPage = () => {
   };
   const closeResetPasswordSuccessModal = () => {
     setIsResetSuccessModalOpen(false);
+  };
+
+  const openResetVerifyCodeModal = () => {
+    setResetVerifyCodeModalOpen(true);
+  };
+  const closeResetVerifyCodeModal = () => {
+    setResetVerifyCodeModalOpen(false);
   };
 
   const openResetPasswordSuccessModal = () => {
@@ -436,8 +447,17 @@ const LandingPage = () => {
           onClose={closeResetPasswordModal}
         >
           <ResetPasswordForm
-            onCreateNewPasswordClick={openCreateNewPasswordModal}
+            onCreateNewPasswordClick={openResetVerifyCodeModal}
             onClose={closeResetPasswordModal}
+          />
+        </Modal>
+        <Modal
+          isOpen={isResetVerifyCodeModalOpen}
+          onClose={closeResetVerifyCodeModal}
+        >
+          <VerifyCodePwReset
+            onOtpSent={openCreateNewPasswordModal}
+            onClose={closeResetVerifyCodeModal}
           />
         </Modal>
         <Modal

@@ -36,7 +36,10 @@ const CartModal = ({ isOpen, onClose, cartItems, onRemoveFromCart }) => {
                   />
                   <div>
                     <p className="font-semibold">{item.title}</p>
-                    <p className="text-gray-600">{item.newP}</p>
+                    <p className="text-gray-600">
+                      <span className="pr-2">#</span>
+                      {calculateTotalPrice(item)}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
