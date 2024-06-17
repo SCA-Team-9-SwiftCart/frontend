@@ -61,9 +61,9 @@ const SignupForm = ({ onLoginClick, onClose, onSuccessfulSignup }) => {
       );
       console.log("Signup successful", response.data);
       toast.success("Signup successful!");
-      toast.success("Proceed to Login");
+      toast.success("Proceed to verify email");
       onClose();
-      onLoginClick();
+      onSuccessfulSignup();
     } catch (error) {
       toast.error("Signup error. Please try again.");
       console.error("Signup error", error);
