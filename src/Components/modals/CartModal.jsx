@@ -3,18 +3,26 @@ import Modal from "../Modals";
 import { FaTrashAlt } from "react-icons/fa";
 
 const CartModal = ({ isOpen, onClose, cartItems, onRemoveFromCart }) => {
+  const calculatePrice = (priceStr) => {
+    return parseFloat(priceStr.replace(/[^0-9.-]+/g, ""));
+  };
+
   const calculateTotalPrice = (item) => {
-    const price = parseFloat(item.newP.replace(/[^0-9.-]+/g, ""));
+    const price = calculatePrice(item.newP);
     return (price * item.quantity).toFixed(2);
   };
 
   const calculateSubtotal = () => {
     let subtotal = 0;
     cartItems.forEach((item) => {
-      const price = parseFloat(item.newP.replace(/[^0-9.-]+/g, ""));
+      const price = calculatePrice(item.newP);
       subtotal += price * item.quantity;
     });
     return subtotal.toFixed(2);
+  };
+
+  const formatPrice = (price) => {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   return (
@@ -38,14 +46,14 @@ const CartModal = ({ isOpen, onClose, cartItems, onRemoveFromCart }) => {
                     <p className="font-semibold">{item.title}</p>
                     <p className="text-gray-600">
                       <span className="pr-2">#</span>
-                      {calculateTotalPrice(item)}
+                      {formatPrice(calculatePrice(item.newP).toFixed(2))}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <p className="text-lg font-semibold">
                     <span className="pr-2">#</span>
-                    {calculateTotalPrice(item)}
+                    {formatPrice(calculateTotalPrice(item))}
                   </p>
                   <button
                     onClick={() => onRemoveFromCart(item)}
@@ -61,7 +69,7 @@ const CartModal = ({ isOpen, onClose, cartItems, onRemoveFromCart }) => {
                 <p className="font-bold text-lg">Total</p>
                 <p className="pr-6 text-xl font-bold">
                   <span className="pr-2">#</span>
-                  {calculateSubtotal()}
+                  {formatPrice(calculateSubtotal())}
                 </p>
               </div>
             </div>
